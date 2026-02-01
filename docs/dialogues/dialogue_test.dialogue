@@ -1,0 +1,13 @@
+~ start
+Dade: [shake]Que onda pa[/shake], soy yo... [wave][color=#00ff00]tu esquizofrenia[/color][/wave].[br][wait=1.5][speed=0.7]Que quisieras saber?[/speed]
+- Que tengo que hacer?
+	Dade: [wait=0.5]Encuéntrame en el hospital[wait=0.3]...[wait=0.8] [speed=1.5]rápido[/speed].
+	Dade: [color=#ff4444]Allí encontrarás al resto de nosotros[/color].[wait=1][br][fade length=15 connected=true][i]Si es que llegas a tiempo[/i][/fade]... => start
+- Donde estoy?
+	Dade: [shake]En un lugar muy[wait=0.2] muy[wait=0.2] [b]peligroso[/b][/shake].[wait=1][br][speed=0.5]Deberías moverte[/speed]. => start
+- Que es este item?
+	Dade: [wait=0.8]Es pa' abrir el camino que dejaste atrás[wait=0.5], [wave]pendejo[/wave].[br][wait=1][speed=0.6][i]¿Ya no te acuerdas de nada?[/i][/speed] => start
+- Que dijiste?
+	Dade: [shake][speed=2]¡QUE TE APURES![/speed][/shake][wait=1][br][speed=0.5]El tiempo se acaba...[/speed] => start
+- Adios
+	Dade: [wave]Chaoooooooooooooooo[/wave]...[wait=1][br][fade length=40 connected=true][speed=0.3]nos vemos del otro lado, hermano.[/speed][/fade][wait=2] => END
