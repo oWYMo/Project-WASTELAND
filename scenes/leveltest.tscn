@@ -28,11 +28,11 @@ position = Vector2(420, 139)
 [node name="Area2D" parent="." unique_id=1691808167 instance=ExtResource("3_xj5b5")]
 position = Vector2(464, 142)
 
-[node name="Area2D2" parent="." unique_id=1514974061 instance=ExtResource("4_ebt4o")]
+[node name="Area2D2" parent="." unique_id=1514974061 groups=["potions"] instance=ExtResource("4_ebt4o")]
 position = Vector2(369, 135)
 
-[node name="Area2D3" parent="." unique_id=765436206 instance=ExtResource("4_ebt4o")]
+[node name="Area2D3" parent="." unique_id=765436206 groups=["boxes"] instance=ExtResource("4_ebt4o")]
 position = Vector2(264, 149)
 
-[node name="Area2D4" parent="." unique_id=922538108 instance=ExtResource("4_ebt4o")]
+[node name="Area2D4" parent="." unique_id=922538108 groups=["boxes"] instance=ExtResource("4_ebt4o")]
 position = Vector2(347, 192)
