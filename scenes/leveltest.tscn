@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://7ivrwnnc28xw" path="res://icon.svg" id="1_uh120"]
 [ext_resource type="PackedScene" uid="uid://bmvjoibxdgjyc" path="res://scenes/player.tscn" id="2_xj5b5"]
+[ext_resource type="PackedScene" uid="uid://d32jsy070xpqt" path="res://scenes/basic_enemy.tscn" id="3_xj5b5"]
+[ext_resource type="PackedScene" uid="uid://ddla5umw6fx4r" path="res://scenes/basic_item.tscn" id="4_ebt4o"]
 
 [node name="Node2D" type="Node2D" unique_id=1115412337]
 
@@ -22,3 +24,15 @@ texture = ExtResource("1_uh120")
 
 [node name="CharacterBody2D" parent="." unique_id=2066114982 instance=ExtResource("2_xj5b5")]
 position = Vector2(420, 139)
+
+[node name="Area2D" parent="." unique_id=1691808167 instance=ExtResource("3_xj5b5")]
+position = Vector2(464, 142)
+
+[node name="Area2D2" parent="." unique_id=1514974061 instance=ExtResource("4_ebt4o")]
+position = Vector2(369, 135)
+
+[node name="Area2D3" parent="." unique_id=765436206 instance=ExtResource("4_ebt4o")]
+position = Vector2(264, 149)
+
+[node name="Area2D4" parent="." unique_id=922538108 instance=ExtResource("4_ebt4o")]
+position = Vector2(347, 192)
