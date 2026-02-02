@@ -121,3 +121,24 @@ func _on_huntbox_for_items_area_exited(area: Area2D) -> void:
 	if item_nearby == area:  # Verifica que sea el mismo item que teníamos guardado
 		item_nearby = null  # Limpia la referencia (ya no hay item cerca)
 		print("El item se alejó")
+		
+		
+# ===== NUEVO: Sistema de daño mejorado =====
+func take_damage(amount: int) -> void:
+	if used_box:
+		print("🛡️ ¡Estás a salvo en la caja! Daño bloqueado.")
+		return
+	
+	life -= amount
+	print("💔 Recibiste ", amount, " de daño. Vida restante: ", life)
+	
+	if life <= 0:
+		die()
+
+func die() -> void:
+	print("💀 ¡Has muerto!")
+	animated_sprite_2d.play("use_dead")
+	set_process(false)  # Detener lógica del jugador
+	# Opcional: Reiniciar nivel o mostrar pantalla de game over
+	await animated_sprite_2d.animation_finished
+	queue_free()
