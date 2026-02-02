@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d32jsy070xpqt" path="res://scenes/basic_enemy.tscn" id="3_xj5b5"]
 [ext_resource type="PackedScene" uid="uid://ddla5umw6fx4r" path="res://scenes/basic_item.tscn" id="4_ebt4o"]
 
-[node name="Node2D" type="Node2D" unique_id=1115412337]
+[node name="Level" type="Node2D" unique_id=1115412337]
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=858923483]
 position = Vector2(2, 196)
