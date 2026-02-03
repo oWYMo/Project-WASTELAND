@@ -131,8 +131,12 @@ size = Vector2(14, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=2066114982]
-collision_mask = 2
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
+size = Vector2(16, 16)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=2066114982 groups=["player"]]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=864636540]
@@ -145,16 +149,23 @@ zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 
 [node name="hurtbox" type="Area2D" parent="." unique_id=452915848]
+collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=692908896]
 shape = SubResource("RectangleShape2D_g2els")
 
 [node name="huntbox_for_items" type="Area2D" parent="." unique_id=1098382602]
-collision_mask = 4
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="huntbox_for_items" unique_id=1023326938]
+light_mask = 2
+visibility_layer = 2
 shape = SubResource("RectangleShape2D_qhqgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1959533952]
+shape = SubResource("RectangleShape2D_dqkch")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://vs1x0rop6rbp"]
+
+[ext_resource type="Script" uid="uid://bketer58jcabp" path="res://scripts/test_enemy_Waypoints.gd" id="1_p67gn"]
+[ext_resource type="Texture2D" uid="uid://7ivrwnnc28xw" path="res://icon.svg" id="2_fhdda"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p67gn"]
+radius = 7.5168834
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p67gn"]
+size = Vector2(15.439431, 14.8083315)
+
+[node name="TestEnemy" type="CharacterBody2D" unique_id=1368609373 groups=["enemigo"]]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_p67gn")
+chase_update_rate = 0.1
+damage = 5
+attack_pause_time = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2025906734]
+rotation = 2.335223
+scale = Vector2(0.12239057, 0.119504504)
+texture = ExtResource("2_fhdda")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1390975545]
+visible = false
+position = Vector2(-1.66893e-06, -1)
+rotation = 0.7643856
+shape = SubResource("CircleShape2D_p67gn")
+
+[node name="Timer" type="Timer" parent="." unique_id=1270013353]
+wait_time = 0.3
+autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1874905376]
+path_desired_distance = 40.0
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=477288873]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1114792107]
+position = Vector2(-0.21090531, -0.30555356)
+rotation = 0.82597786
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_p67gn")
+
+[node name="DamageCooldown" type="Timer" parent="." unique_id=1105828789]
+one_shot = true
+
+[node name="VisionRay" type="RayCast2D" parent="." unique_id=544085562]
+target_position = Vector2(-33, 46)

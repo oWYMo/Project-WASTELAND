@@ -110,17 +110,15 @@ func update_animation(state):
 
 ### Señales de daño ###########################################################
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	# Si tiene la caja puesta, no recibe daño
-	if used_box:
-		print("La caja te protege del daño")
-		return
-	
-	life -= 1
+	# Se ejecuta cuando algo entra al área de daño del jugador
+	life -= 1  # Reduce la vida en 1
 	print("Vida restante: ", life)
 
 func _on_animated_sprite_2d_animation_finished() -> void:
+	# Se ejecuta cuando una animación termina de reproducirse
 	if life <= 0:
-		queue_free()
+		queue_free()  # Elimina al jugador de la escena si murió
+
 
 ### Señales de detección de items #############################################
 func _on_huntbox_for_items_area_entered(area: Area2D) -> void:
@@ -140,3 +138,24 @@ func _on_huntbox_for_items_area_exited(area: Area2D) -> void:
 		item_nearby = null
 		item_type = ""
 		print("El item se alejó")
+
+
+# ===== NUEVO: Sistema de daño mejorado =====
+func take_damage(amount: int) -> void:
+	if used_box:
+		print("🛡️ ¡Estás a salvo en la caja! Daño bloqueado.")
+		return
+	
+	life -= amount
+	print("💔 Recibiste ", amount, " de daño. Vida restante: ", life)
+	
+	if life <= 0:
+		die()
+
+func die() -> void:
+	print("💀 ¡Has muerto!")
+	animated_sprite_2d.play("use_dead")
+	set_process(false)  # Detener lógica del jugador
+	# Opcional: Reiniciar nivel o mostrar pantalla de game over
+	await animated_sprite_2d.animation_finished
+	queue_free()
