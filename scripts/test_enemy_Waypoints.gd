@@ -1,30 +1,64 @@
 extends CharacterBody2D
 
-@export var speed: float = 90.0
-@export var chase_update_rate: float = 0.3
-@export var damage: int = 1
-@export var attack_pause_time: float = 1.0
-@export var vision_range := 150.0
-@export var vision_angle := 180.0 # grados
-@export var lost_sight_time := 0.5
-var last_seen_timer := 0.0
-var player_detected := false
+# ===================== ESTADOS =====================
+enum EnemyState { PATROL, CHASE, SEARCH }
 
+# ===================== CONFIGURACIÓN GENERAL =====================
+@export var speed := 40.0
+@export var damage := 5
+@export var attack_pause_time := 0.5
 
+# ===================== PATRULLA =====================
+@export var patrol_radius := 70.0
+@export var wait_time_patrol := 1.0
 
-@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
-@onready var chase_timer: Timer = $Timer
+# ===================== BÚSQUEDA =====================
+@export var search_radius := 120.0
+@export var search_time := 3.0
+
+# ===================== VISIÓN =====================
+@export var vision_range := 250.0
+@export var vision_angle := 180.0
+@export var lost_sight_time := 1.5
+
+# ===================== NODOS =====================
+@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var vision_ray: RayCast2D = $VisionRay
 @onready var attack_area: Area2D = $AttackArea
 @onready var damage_timer: Timer = $DamageCooldown
-@onready var vision_ray: RayCast2D = $VisionRay
+@onready var wait_timer: Timer = Timer.new()
+@onready var nav_map := navigation_agent.get_navigation_map()
 
-
-
+# ===================== VARIABLES =====================
 var player: CharacterBody2D
-var is_chasing := false
-var can_damage := true
-var can_move := true
+var state := EnemyState.PATROL
 
+var last_seen_position := Vector2.ZERO
+var lost_timer := 0.0
+var search_timer := 0.0
+var stuck_timer := 0.0
+
+var can_move := true
+var can_damage := true
+var waiting := false
+
+func get_random_nav_point(center: Vector2, radius: float) -> Vector2:
+	for i in range(10):
+		var offset = Vector2(
+			randf_range(-radius, radius),
+			randf_range(-radius, radius)
+		)
+		var candidate = center + offset
+		var closest = NavigationServer2D.map_get_closest_point(nav_map, candidate)
+
+		if closest.distance_to(candidate) < 20:
+			return closest
+
+	return global_position
+
+func _on_wait_timer_timeout():
+	waiting = false
+	set_random_patrol_target()
 
 func _ready():
 	player = get_tree().get_first_node_in_group("player")
@@ -32,115 +66,118 @@ func _ready():
 		push_error("No se encontró el jugador")
 		return
 
-	#Navigation
-	navigation_agent_2d.path_desired_distance = 4.0
-	navigation_agent_2d.target_desired_distance = 4.0
-	navigation_agent_2d.max_speed = speed
+	wait_timer.one_shot = true
+	wait_timer.timeout.connect(_on_wait_timer_timeout)
+	add_child(wait_timer)
 
-	#Chase timer
-	chase_timer.wait_time = chase_update_rate
-	chase_timer.one_shot = false
-	chase_timer.timeout.connect(_on_timer_timeout)
+	navigation_agent.max_speed = speed
+	navigation_agent.avoidance_enabled = true
 
-	#Damage / pause timer
-	damage_timer.wait_time = attack_pause_time
-	damage_timer.one_shot = true
+	attack_area.area_entered.connect(_on_attack_area_entered)
 	damage_timer.timeout.connect(_on_damage_timer_timeout)
 
-	#Attack area
-	attack_area.area_entered.connect(_on_attack_area_entered)
-
-
-
-# ===================== CHASE =====================
-
-func start_chasing():
-	is_chasing = true
-	navigation_agent_2d.target_position = player.global_position
-	chase_timer.start()
-
-func stop_chasing():
-	is_chasing = false
-	velocity = Vector2.ZERO
-	chase_timer.stop()
+	enter_patrol_state()
 
 func _physics_process(delta):
-	if player == null:
-		return
-
-	#lo ve → refresca memoria
-	if can_see_player():
-		player_detected = true
-		last_seen_timer = lost_sight_time
-	else:
-		last_seen_timer -= delta
-
-	#Caja solo funciona si NO está en visión
-	if player.used_box and !can_see_player():
-		if last_seen_timer <= 0:
-			stop_chasing()
-			return
-
-	#Sigue persiguiendo mientras tenga memoria
-	if player_detected and last_seen_timer > 0:
-		if !is_chasing:
-			start_chasing()
-	else:
-		player_detected = false
-		stop_chasing()
-		return
-
-	#Pausa por ataque
-	if !can_move:
-		velocity = Vector2.ZERO
-		move_and_slide()
-		return
-
-	#Movimiento normal
-	if navigation_agent_2d.is_navigation_finished():
-		velocity = Vector2.ZERO
-	else:
-		var next_position = navigation_agent_2d.get_next_path_position()
-		var direction = (next_position - global_position).normalized()
-		velocity = direction * speed
+	match state:
+		EnemyState.PATROL:
+			process_patrol(delta)
+		EnemyState.CHASE:
+			process_chase(delta)
+		EnemyState.SEARCH:
+			process_search(delta)
 
 	move_and_slide()
 
-func _on_timer_timeout():
-	if player and !player.used_box:
-		navigation_agent_2d.target_position = player.global_position
+func enter_patrol_state():
+	state = EnemyState.PATROL
+	waiting = false
+	set_random_patrol_target()
 
+func process_patrol(delta):
+	if can_see_player():
+		enter_chase_state()
+		return
 
-# ===================== ATAQUE =====================
+	if navigation_agent.is_navigation_finished():
+		if not waiting:
+			waiting = true
+			wait_timer.start(wait_time_patrol)
+		return
 
-func _on_attack_area_entered(area: Area2D):
-	var body = area.get_parent()
+	move_towards_target(delta)
 
-	if body.is_in_group("player") and can_damage and !body.used_box:
-		body.take_damage(damage)
+func set_random_patrol_target():
+	navigation_agent.target_position = get_random_nav_point(global_position, patrol_radius)
 
-		#Pausa al atacar
-		can_damage = false
-		can_move = false
-		damage_timer.start()
+func enter_chase_state():
+	state = EnemyState.CHASE
+	lost_timer = lost_sight_time
 
+func process_chase(delta):
+	if can_see_player():
+		last_seen_position = player.global_position
+		lost_timer = lost_sight_time
+		navigation_agent.target_position = last_seen_position
+	else:
+		lost_timer -= delta
+		if lost_timer <= 0:
+			enter_search_state()
+			return
 
-func _on_damage_timer_timeout():
-	can_damage = true
-	can_move = true
+	move_towards_target(delta)
+
+func enter_search_state():
+	state = EnemyState.SEARCH
+	search_timer = search_time
+	navigation_agent.target_position = get_random_nav_point(last_seen_position, search_radius)
+
+func process_search(delta):
+	search_timer -= delta
+
+	if can_see_player():
+		enter_chase_state()
+		return
+
+	if search_timer <= 0:
+		enter_patrol_state()
+		return
+
+	if navigation_agent.is_navigation_finished():
+		navigation_agent.target_position = get_random_nav_point(last_seen_position, search_radius)
+
+	move_towards_target(delta)
+
+func move_towards_target(delta):
+	if !can_move:
+		velocity = Vector2.ZERO
+		return
+
+	if navigation_agent.is_navigation_finished():
+		velocity = Vector2.ZERO
+		return
+
+	var next_pos = navigation_agent.get_next_path_position()
+	var dir = (next_pos - global_position).normalized()
+	velocity = dir * speed
+
+	if velocity.length() < 1:
+		stuck_timer += delta
+		if stuck_timer > 0.5:
+			navigation_agent.target_position = global_position
+	else:
+		stuck_timer = 0
 
 func can_see_player() -> bool:
-	if player == null or vision_ray == null:
+	if player.used_box:
 		return false
 
-	var to_player := player.global_position - global_position
-
+	var to_player = player.global_position - global_position
 	if to_player.length() > vision_range:
 		return false
 
-	var forward := Vector2.RIGHT.rotated(global_rotation)
-	var angle := rad_to_deg(forward.angle_to(to_player.normalized()))
-
+	var forward = Vector2.RIGHT.rotated(global_rotation)
+	var angle = rad_to_deg(forward.angle_to(to_player.normalized()))
 	if abs(angle) > vision_angle * 0.5:
 		return false
 
@@ -150,5 +187,16 @@ func can_see_player() -> bool:
 	if !vision_ray.is_colliding():
 		return false
 
-	var collider = vision_ray.get_collider()
-	return collider.is_in_group("player")
+	return vision_ray.get_collider() == player
+
+func _on_attack_area_entered(area):
+	var body = area.get_parent()
+	if body.is_in_group("player") and can_damage and !body.used_box:
+		body.take_damage(damage)
+		can_damage = false
+		can_move = false
+		damage_timer.start()
+
+func _on_damage_timer_timeout():
+	can_damage = true
+	can_move = true
