@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bbjjdddn5pgsx"]
 
-[ext_resource type="Script" uid="uid://bqsfb43sa8vsi" path="res://enemy_remake.gd" id="1_4arcx"]
+[ext_resource type="Script" uid="uid://bqsfb43sa8vsi" path="res://scripts/enemy_remake.gd" id="1_4arcx"]
 [ext_resource type="Texture2D" uid="uid://7ivrwnnc28xw" path="res://icon.svg" id="2_ykhv5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7nlux"]
@@ -17,8 +17,8 @@ scale = Vector2(0.12, 0.12)
 texture = ExtResource("2_ykhv5")
 
 [node name="Timer" type="Timer" parent="." unique_id=1731523673]
-
-[node name="RayCast2D" type="RayCast2D" parent="." unique_id=53965186]
+wait_time = 0.1
+autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1979626985]
 
@@ -34,3 +34,5 @@ collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="huntbox_structure" unique_id=980886157]
 shape = SubResource("RectangleShape2D_rwt80")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

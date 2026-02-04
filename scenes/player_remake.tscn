@@ -1,46 +1,46 @@
 [gd_scene format=3 uid="uid://cv5q8ffk0kk44"]
 
-[ext_resource type="Texture2D" uid="uid://bqo6p2jaoviwk" path="res://sprites/basic_movement.png" id="1_gi6sv"]
-[ext_resource type="Script" uid="uid://cmuu0cc37sxne" path="res://player_remake.gd" id="1_iidij"]
+[ext_resource type="Script" uid="uid://cmuu0cc37sxne" path="res://scripts/player_remake.gd" id="1_5luv3"]
+[ext_resource type="Texture2D" uid="uid://bqo6p2jaoviwk" path="res://sprites/basic_movement.png" id="2_sitep"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iidij"]
-atlas = ExtResource("1_gi6sv")
+atlas = ExtResource("2_sitep")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5hwvp"]
-atlas = ExtResource("1_gi6sv")
+atlas = ExtResource("2_sitep")
 region = Rect2(0, 48, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fl73t"]
-atlas = ExtResource("1_gi6sv")
+atlas = ExtResource("2_sitep")
 region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0jsln"]
-atlas = ExtResource("1_gi6sv")
+atlas = ExtResource("2_sitep")
 region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eorip"]
-atlas = ExtResource("1_gi6sv")
+atlas = ExtResource("2_sitep")
 region = Rect2(0, 64, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ssc5s"]
-atlas = ExtResource("1_gi6sv")
+atlas = ExtResource("2_sitep")
 region = Rect2(0, 112, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_23wy8"]
-atlas = ExtResource("1_gi6sv")
+atlas = ExtResource("2_sitep")
 region = Rect2(0, 96, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7fyfm"]
-atlas = ExtResource("1_gi6sv")
+atlas = ExtResource("2_sitep")
 region = Rect2(0, 80, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_anxfc"]
-atlas = ExtResource("1_gi6sv")
+atlas = ExtResource("2_sitep")
 region = Rect2(0, 144, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x1q1s"]
-atlas = ExtResource("1_gi6sv")
+atlas = ExtResource("2_sitep")
 region = Rect2(0, 128, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8xbad"]
@@ -140,8 +140,8 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_de3yb"]
 size = Vector2(16, 16)
 
-[node name="player_remake" type="CharacterBody2D" unique_id=1900050170]
-script = ExtResource("1_iidij")
+[node name="player_remake" type="CharacterBody2D" unique_id=1900050170 groups=["player"]]
+script = ExtResource("1_5luv3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=726622179]
 sprite_frames = SubResource("SpriteFrames_8xbad")

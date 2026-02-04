@@ -1,16 +1,20 @@
 extends CharacterBody2D
 
 ### Items y detección #########################################################
-var boxes: int = 3
+@export var boxes: int = 3
+@export var keys: int = 0
+@export var potions: int = 0
 var used_box: bool = false
-var keys: int = 0
-var potions: int = 0
 var item_nearby: Area2D = null
 var item_type: String = ""
 
 ### Vida y daño ###############################################################
-var life: int = 10
-var max_life: int = 10
+@export var life: int = 10
+@export var max_life: int = 10
+var is_immune: bool = false  # Inmunidad activa
+@export var immunity_duration: float = 1.0  # Duración de la inmunidad
+@export var enemy_layer: int = 2  # El número de layer donde están los enemigos
+var enemies_touching: Array = []  # Array de enemigos que están tocando
 
 ### Movimiento ################################################################
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -115,16 +119,45 @@ func update_animation(state):
 		animated_sprite_2d.play(state + "_" + last_direction)
 
 ### Sistema de daño mejorado ##################################################
-func _on_huntbox_enemy_area_entered(_area: Area2D) -> void:
-	# La caja NO protege del daño, solo te hace indetectable
-	take_damage(0)
+func _on_huntbox_enemy_area_entered(area: Area2D) -> void:
+	# Detectar si está en el layer de enemigos
+	if area.collision_layer & (1 << (enemy_layer - 1)):
+		if not area in enemies_touching:
+			enemies_touching.append(area)
+			print("⚔️ Enemigo entró en contacto")
+			# Hacer daño inmediato al entrar SOLO si no es inmune
+			if not is_immune:
+				take_damage(1)
+
+func _on_huntbox_enemy_area_exited(area: Area2D) -> void:
+	# Remover enemigo de la lista cuando se aleja
+	if area in enemies_touching:
+		enemies_touching.erase(area)
+		print("🏃 Enemigo se alejó")
 
 func take_damage(amount: int) -> void:
+	if is_immune or life <= 0:
+		return
+	
 	life -= amount
 	print("💔 Recibiste ", amount, " de daño. Vida restante: ", life)
 	
 	if life <= 0:
 		die()
+		return
+	
+	# Activar inmunidad
+	is_immune = true
+	print("🛡️ Inmunidad activada por ", immunity_duration, " segundo(s)")
+	
+	# Después de la inmunidad, verificar si sigue habiendo enemigos
+	await get_tree().create_timer(immunity_duration).timeout
+	is_immune = false
+	print("⚔️ Inmunidad terminada")
+	
+	# Si todavía hay enemigos tocando, volver a hacer daño
+	if enemies_touching.size() > 0:
+		take_damage(1)
 
 func die() -> void:
 	print("💀 ¡Has muerto!")
