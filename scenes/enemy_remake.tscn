@@ -11,6 +11,7 @@ size = Vector2(14, 14)
 
 [node name="enemy_remake" type="CharacterBody2D" unique_id=1237575968 groups=["enemy"]]
 script = ExtResource("1_4arcx")
+vision_range = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=805788284]
 scale = Vector2(0.12, 0.12)
