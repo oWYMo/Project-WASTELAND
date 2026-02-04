@@ -56,7 +56,7 @@ func get_random_nav_point(center: Vector2, radius: float) -> Vector2:
 
 	return global_position
 
-func _on_wait_timer_timeout():
+func _on_timer_timeout():
 	waiting = false
 	set_random_patrol_target()
 

@@ -35,6 +35,8 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 keys=""
 boxes=""
 potions=""
+player=""
+enemy=""
 
 [input]
 
