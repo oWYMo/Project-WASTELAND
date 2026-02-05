@@ -3,15 +3,18 @@
 [ext_resource type="Script" uid="uid://bqsfb43sa8vsi" path="res://scripts/enemy_remake.gd" id="1_4arcx"]
 [ext_resource type="Texture2D" uid="uid://7ivrwnnc28xw" path="res://icon.svg" id="2_ykhv5"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ctd35"]
+radius = 8.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7nlux"]
 size = Vector2(14, 14)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwt80"]
-size = Vector2(14, 14)
-
 [node name="enemy_remake" type="CharacterBody2D" unique_id=1237575968 groups=["enemy"]]
+collision_layer = 0
+collision_mask = 8
 script = ExtResource("1_4arcx")
-vision_range = 100.0
+speed = 80.0
+patrol_speed = 40.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=805788284]
 scale = Vector2(0.12, 0.12)
@@ -23,17 +26,13 @@ autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1979626985]
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=980886157]
+shape = SubResource("CircleShape2D_ctd35")
+
 [node name="hitbox" type="Area2D" parent="." unique_id=77262587]
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=444948852]
 shape = SubResource("RectangleShape2D_7nlux")
-
-[node name="huntbox_structure" type="Area2D" parent="." unique_id=1284592538]
-collision_layer = 2
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="huntbox_structure" unique_id=980886157]
-shape = SubResource("RectangleShape2D_rwt80")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

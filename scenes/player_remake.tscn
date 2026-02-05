@@ -131,21 +131,27 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_5luv3"]
+radius = 8.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbi71"]
-size = Vector2(16, 16)
+size = Vector2(12, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h4rru"]
-size = Vector2(16, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_de3yb"]
-size = Vector2(16, 16)
 
 [node name="player_remake" type="CharacterBody2D" unique_id=1900050170 groups=["player"]]
+collision_layer = 0
+collision_mask = 8
 script = ExtResource("1_5luv3")
+keys = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=726622179]
 sprite_frames = SubResource("SpriteFrames_8xbad")
 animation = &"run_right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1587817517]
+visible = false
+shape = SubResource("CircleShape2D_5luv3")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1667413261]
 zoom = Vector2(3, 3)
@@ -162,12 +168,6 @@ collision_mask = 4
 
 [node name="hurtbox_items" type="CollisionShape2D" parent="huntbox_item" unique_id=1938658687]
 shape = SubResource("RectangleShape2D_h4rru")
-
-[node name="huntbox_structure" type="Area2D" parent="." unique_id=471038374]
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="huntbox_structure" unique_id=1587817517]
-shape = SubResource("RectangleShape2D_de3yb")
 
 [connection signal="area_entered" from="huntbox_enemy" to="." method="_on_huntbox_enemy_area_entered"]
 [connection signal="area_entered" from="huntbox_item" to="." method="_on_huntbox_item_area_entered"]
