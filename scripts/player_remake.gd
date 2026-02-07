@@ -30,7 +30,7 @@ var damage_timer: Timer = null  # Timer que verifica si hay enemigos tocando
 var heart_sprites: Array[AnimatedSprite2D] = []
 var active_hearts: int = 3  # Cuántos corazones están visibles (0–3)
 var damage_since_last_heart: int = 0
-
+@onready var box_count_label: Label = $Box_bar/BoxUI/BoxCount
 ################################################################################
 # VARIABLES DE MOVIMIENTO
 ################################################################################
@@ -73,6 +73,14 @@ func _ready():
 	for heart in heart_sprites:
 		heart.frame = 0
 		heart.stop()
+	var box_ui = $Box_bar/BoxUI
+	box_ui.anchor_left = 0
+	box_ui.anchor_top = 0
+	box_ui.anchor_right = 0
+	box_ui.anchor_bottom = 0
+	box_ui.offset_left = 80
+	box_ui.offset_top = 35
+	update_box_ui()
 
 ################################################################################
 # PROCESO PRINCIPAL (CADA FRAME)
@@ -157,6 +165,7 @@ func toggle_box():
 		used_box = false
 		speed = base_speed  # Restaurar velocidad normal
 		boxes -= 1  # Consumir una caja
+		update_box_ui()
 		print("Caja quitada. Cajas restantes: ", boxes)
 	else:
 		# Entrar en la caja
@@ -167,6 +176,9 @@ func toggle_box():
 func is_detectable() -> bool:
 	# Los enemigos llaman esta función para saber si pueden ver al jugador
 	return not used_box
+
+func update_box_ui():
+	box_count_label.text = "x" + str(boxes)
 
 ################################################################################
 # SISTEMA DE ITEMS
@@ -195,11 +207,12 @@ func handle_item_pickup():
 	if item_nearby != null and Input.is_action_just_pressed("take_item"):
 		# Recoger item según su tipo
 		match item_type:
-			"key":
+			"Bell":
 				keys += 1
-				print("Llaves recogidas: ", keys)
+				print("Campanas recogidas ", keys)
 			"box":
 				boxes += 1
+				update_box_ui()
 				print("Cajas recogidas: ", boxes)
 			"potion":
 				potions += 1

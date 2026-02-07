@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cmuu0cc37sxne" path="res://scripts/player_remake.gd" id="1_5luv3"]
 [ext_resource type="Texture2D" uid="uid://bqo6p2jaoviwk" path="res://sprites/basic_movement.png" id="2_sitep"]
 [ext_resource type="Texture2D" uid="uid://cc5dl2muw3yrw" path="res://sprites/Hearts/PNG/animated/border/heart_animated_1.png" id="3_sitep"]
+[ext_resource type="Texture2D" uid="uid://cxedp81h3bc3l" path="res://sprites/caja.png" id="4_aw3di"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iidij"]
 atlas = ExtResource("2_sitep")
@@ -183,6 +184,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_mvqw3"]
+
 [node name="player_remake" type="CharacterBody2D" unique_id=1900050170 groups=["player"]]
 collision_layer = 9
 collision_mask = 8
@@ -238,6 +241,25 @@ position = Vector2(-170, -90)
 scale = Vector2(1.5588236, 1.4411764)
 sprite_frames = SubResource("SpriteFrames_fieof")
 animation = &"Damage_Heart"
+
+[node name="Box_bar" type="CanvasLayer" parent="." unique_id=1237618469]
+
+[node name="BoxUI" type="HBoxContainer" parent="Box_bar" unique_id=76837414]
+offset_left = -114.0
+offset_top = -72.0
+offset_right = -41.0
+offset_bottom = -31.0
+
+[node name="BoxCount" type="Label" parent="Box_bar/BoxUI" unique_id=1543135896]
+z_index = 1
+layout_mode = 2
+text = "x0"
+label_settings = SubResource("LabelSettings_mvqw3")
+
+[node name="Boxicon" type="Sprite2D" parent="Box_bar/BoxUI" unique_id=68528137]
+position = Vector2(-27, -5)
+scale = Vector2(7, 7)
+texture = ExtResource("4_aw3di")
 
 [connection signal="area_entered" from="huntbox_enemy" to="." method="_on_huntbox_enemy_area_entered"]
 [connection signal="area_entered" from="huntbox_item" to="." method="_on_huntbox_item_area_entered"]
