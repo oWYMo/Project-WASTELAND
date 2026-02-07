@@ -10,6 +10,8 @@ extends CharacterBody2D
 var used_box: bool = false
 var item_nearby: Area2D = null
 var item_type: String = ""
+var hide_spot_nearby: Area2D = null
+var is_hidden_in_spot: bool = false
 
 ################################################################################
 # VARIABLES DE VIDA Y DAÑO
@@ -56,6 +58,9 @@ func _physics_process(_delta):
 # SISTEMA DE MOVIMIENTO
 ################################################################################
 func get_input():
+	if is_hidden_in_spot:
+		velocity = Vector2.ZERO
+		return
 	# Obtener dirección del input (WASD o flechas)
 	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	
@@ -84,6 +89,8 @@ func get_input():
 	velocity = input_direction * speed
 
 func update_animation(state):
+	if is_hidden_in_spot:
+		return
 	if life <= 0:
 		return  # No actualizar animación si está muerto
 	
@@ -98,6 +105,19 @@ func update_animation(state):
 # SISTEMA DE CAJAS (STEALTH)
 ################################################################################
 func handle_box_input():
+	#ESCONDERSE EN COSAS RAMDON
+	# 🔹 PRIORIDAD: ESCONDITE
+	if Input.is_action_just_pressed("take_item") and hide_spot_nearby and not is_hidden_in_spot:
+		enter_hide_spot()
+		return
+	
+	# 🔹 SALIR DEL ESCONDITE
+	if is_hidden_in_spot:
+		var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		if input_direction != Vector2.ZERO:
+			exit_hide_spot(input_direction)
+		return
+	
 	if Input.is_action_just_pressed("use_box") and boxes > 0:
 		toggle_box()
 
@@ -145,6 +165,12 @@ func handle_item_pickup():
 		item_type = ""
 
 func _on_huntbox_item_area_entered(area: Area2D) -> void:
+	print("Entró algo al huntbox:", area.name)
+	print("Grupos del area:", area.get_groups())
+	#Logica de escondites
+	if area.is_in_group("hide_spots"):
+		hide_spot_nearby = area
+		return
 	# Detectar qué tipo de item está cerca
 	item_nearby = area
 	
@@ -158,6 +184,11 @@ func _on_huntbox_item_area_entered(area: Area2D) -> void:
 	print("Item cercano: ", item_type)
 
 func _on_huntbox_item_area_exited(area: Area2D) -> void:
+	#Logica del escondite
+	if area == hide_spot_nearby:
+		hide_spot_nearby = null
+		return
+	
 	# El item se alejó del rango
 	if item_nearby == area:
 		item_nearby = null
@@ -279,3 +310,31 @@ func die() -> void:
 	set_physics_process(false)  # Detener toda la lógica del jugador
 	await animated_sprite_2d.animation_finished  # Esperar a que termine la animación
 	queue_free()  # Eliminar al jugador de la escena
+
+################################################################################
+#Sistema de ESCONDITES
+################################################################################
+func enter_hide_spot():
+	if not hide_spot_nearby:
+		return
+	#Teletransportar al centro del CollisionShape2D del hide spot
+	var shape = hide_spot_nearby.get_node_or_null("CollisionShape2D")
+	if shape:
+		global_position = shape.global_position
+	else:
+		global_position = hide_spot_nearby.global_position
+	is_hidden_in_spot = true
+	used_box = true   #Recliclo Logica amo reclicar bro
+	velocity = Vector2.ZERO
+	animated_sprite_2d.visible = false
+	print("El jugador se esncondio en chingaderas")
+
+func exit_hide_spot(direction: Vector2):
+	is_hidden_in_spot = false
+	used_box = false
+	animated_sprite_2d.visible = true
+	
+	# Salir un poco hacia la dirección presionada
+	global_position += direction.normalized() * 20
+	
+	print("Saliste de la chingadera")

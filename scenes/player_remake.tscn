@@ -140,7 +140,7 @@ size = Vector2(12, 12)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h4rru"]
 
 [node name="player_remake" type="CharacterBody2D" unique_id=1900050170 groups=["player"]]
-collision_layer = 0
+collision_layer = 9
 collision_mask = 8
 script = ExtResource("1_5luv3")
 keys = 3
@@ -153,6 +153,8 @@ animation = &"run_right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1587817517]
 visible = false
+light_mask = 9
+visibility_layer = 9
 shape = SubResource("CircleShape2D_5luv3")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1667413261]
@@ -160,17 +162,28 @@ zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 
 [node name="huntbox_enemy" type="Area2D" parent="." unique_id=1660440462]
-collision_mask = 2
+collision_layer = 9
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="huntbox_enemy" unique_id=1740518804]
 shape = SubResource("RectangleShape2D_tbi71")
 
 [node name="huntbox_item" type="Area2D" parent="." unique_id=615530812]
+collision_layer = 9
 collision_mask = 4
 
 [node name="hurtbox_items" type="CollisionShape2D" parent="huntbox_item" unique_id=1938658687]
 shape = SubResource("RectangleShape2D_h4rru")
 
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1268035786]
+collision_layer = 9
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1047047221]
+shape = SubResource("RectangleShape2D_tbi71")
+
 [connection signal="area_entered" from="huntbox_enemy" to="." method="_on_huntbox_enemy_area_entered"]
 [connection signal="area_entered" from="huntbox_item" to="." method="_on_huntbox_item_area_entered"]
 [connection signal="area_exited" from="huntbox_item" to="." method="_on_huntbox_item_area_exited"]
+[connection signal="area_entered" from="DetectionArea" to="." method="_on_detection_area_area_entered"]
+[connection signal="area_exited" from="DetectionArea" to="." method="_on_detection_area_area_exited"]

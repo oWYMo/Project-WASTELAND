@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://8vmcwmpler05"]
+
+[ext_resource type="Script" uid="uid://c0gj0ft83b2qy" path="res://scripts/hide_spot.gd" id="1_v4ha3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7d5o"]
+size = Vector2(30, 40)
+
+[node name="HideSpot" type="Area2D" unique_id=951658908 groups=["Hide_spots", "hide_spots"]]
+collision_layer = 13
+collision_mask = 0
+script = ExtResource("1_v4ha3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1658416298]
+light_mask = 9
+visibility_layer = 9
+shape = SubResource("RectangleShape2D_e7d5o")
+debug_color = Color(0.96051425, 0.20152774, 3.85046e-07, 0.41960785)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

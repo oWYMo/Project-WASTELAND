@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://u1mrmminnpvj" path="res://sprites/wall_tilemap.png" id="2_qfnet"]
 [ext_resource type="PackedScene" uid="uid://cv5q8ffk0kk44" path="res://scenes/player_remake.tscn" id="3_i7141"]
 [ext_resource type="PackedScene" uid="uid://bbjjdddn5pgsx" path="res://scenes/enemy_remake.tscn" id="4_4mrxx"]
+[ext_resource type="PackedScene" path="res://scenes/hide_spot.tscn" id="5_71j4m"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_tlwt5"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -238,3 +239,8 @@ position = Vector2(1199, 334)
 
 [node name="enemy_remake49" parent="." unique_id=1473647004 instance=ExtResource("4_4mrxx")]
 position = Vector2(1199, 207)
+
+[node name="Node2D" type="Node2D" parent="." unique_id=2025690270]
+
+[node name="HideSpot" parent="Node2D" unique_id=951658908 groups=["hide_spot"] instance=ExtResource("5_71j4m")]
+position = Vector2(1196, 2189)
