@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://bpu73ng6jbwwb"]
 
+[ext_resource type="Script" uid="uid://cxo673xdkfpvj" path="res://scripts/door.gd" id="1_door_script"]
 [ext_resource type="Texture2D" uid="uid://dd08ytvxv5jqi" path="res://sprites/door_states.png" id="1_hpvv5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v1oua"]
-size = Vector2(16, 16)
+size = Vector2(104, 39)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6xrn"]
 atlas = ExtResource("1_hpvv5")
@@ -53,7 +54,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="door" type="Area2D" unique_id=1950619840]
+[node name="door" type="Area2D" unique_id=1950619840 groups=["door"]]
+collision_layer = 4
+collision_mask = 8
+script = ExtResource("1_door_script")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1763600881]
 shape = SubResource("RectangleShape2D_v1oua")

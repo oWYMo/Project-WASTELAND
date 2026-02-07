@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cmuu0cc37sxne" path="res://scripts/player_remake.gd" id="1_5luv3"]
 [ext_resource type="Texture2D" uid="uid://bqo6p2jaoviwk" path="res://sprites/basic_movement.png" id="2_sitep"]
+[ext_resource type="Texture2D" uid="uid://cc5dl2muw3yrw" path="res://sprites/Hearts/PNG/animated/border/heart_animated_1.png" id="3_sitep"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iidij"]
 atlas = ExtResource("2_sitep")
@@ -135,17 +136,58 @@ animations = [{
 radius = 8.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbi71"]
-size = Vector2(12, 12)
+size = Vector2(16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h4rru"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw3di"]
+atlas = ExtResource("3_sitep")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvqw3"]
+atlas = ExtResource("3_sitep")
+region = Rect2(17, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42yco"]
+atlas = ExtResource("3_sitep")
+region = Rect2(34, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75nov"]
+atlas = ExtResource("3_sitep")
+region = Rect2(51, 0, 17, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kpe8"]
+atlas = ExtResource("3_sitep")
+region = Rect2(68, 0, 17, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fieof"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aw3di")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvqw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42yco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75nov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kpe8")
+}],
+"loop": false,
+"name": &"Damage_Heart",
+"speed": 5.0
+}]
 
 [node name="player_remake" type="CharacterBody2D" unique_id=1900050170 groups=["player"]]
 collision_layer = 9
 collision_mask = 8
 script = ExtResource("1_5luv3")
 keys = 3
-life = 100
-max_life = 100
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=726622179]
 sprite_frames = SubResource("SpriteFrames_8xbad")
@@ -166,9 +208,11 @@ collision_layer = 9
 collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="huntbox_enemy" unique_id=1740518804]
+scale = Vector2(1.02, 1.02)
 shape = SubResource("RectangleShape2D_tbi71")
 
 [node name="huntbox_item" type="Area2D" parent="." unique_id=615530812]
+visible = false
 collision_layer = 9
 collision_mask = 4
 
@@ -176,11 +220,24 @@ collision_mask = 4
 shape = SubResource("RectangleShape2D_h4rru")
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=1268035786]
+visible = false
 collision_layer = 9
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1047047221]
 shape = SubResource("RectangleShape2D_tbi71")
+
+[node name="Healt_bar" type="CanvasLayer" parent="." unique_id=597981531]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Healt_bar" unique_id=549512963]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Heart1" type="AnimatedSprite2D" parent="Healt_bar" unique_id=1093584906]
+position = Vector2(-170, -90)
+scale = Vector2(1.5588236, 1.4411764)
+sprite_frames = SubResource("SpriteFrames_fieof")
+animation = &"Damage_Heart"
 
 [connection signal="area_entered" from="huntbox_enemy" to="." method="_on_huntbox_enemy_area_entered"]
 [connection signal="area_entered" from="huntbox_item" to="." method="_on_huntbox_item_area_entered"]

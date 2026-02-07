@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://daj6fsd5qjx8x"]
+
+[ext_resource type="Texture2D" uid="uid://rl717klm7v8y" path="res://sprites/PostApocalypse_AssetPack_v1.1.2/Objects/Vehicles/Normal/Car_1/Car_1_Blue.png" id="1_caxtr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bcsdx"]
+size = Vector2(28, 40)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=5827568]
+collision_layer = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=111079130]
+texture = ExtResource("1_caxtr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=171723010]
+shape = SubResource("RectangleShape2D_bcsdx")

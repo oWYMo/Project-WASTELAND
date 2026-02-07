@@ -4,6 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://cv5q8ffk0kk44" path="res://scenes/player_remake.tscn" id="2_au5do"]
 [ext_resource type="Texture2D" uid="uid://u1mrmminnpvj" path="res://sprites/wall_tilemap.png" id="2_x642b"]
 [ext_resource type="PackedScene" uid="uid://bbjjdddn5pgsx" path="res://scenes/enemy_remake.tscn" id="3_x642b"]
+[ext_resource type="PackedScene" uid="uid://daj6fsd5qjx8x" path="res://scenes/Open_Door.tscn" id="5_tak7k"]
+[ext_resource type="PackedScene" uid="uid://bpu73ng6jbwwb" path="res://scenes/door.tscn" id="6_3650q"]
+[ext_resource type="PackedScene" path="res://scenes/key.tscn" id="7_3650q"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_78m1j"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -71,7 +74,27 @@ tile_map_data = PackedByteArray("AAD//wAAAAABAAAAAAD//wEAAAAAAAEAAAD//wIAAAAAAAA
 tile_set = SubResource("TileSet_637it")
 
 [node name="enemy_remake" parent="." unique_id=1237575968 instance=ExtResource("3_x642b")]
-position = Vector2(292, 160)
+position = Vector2(439, 264)
 
 [node name="player_remake" parent="." unique_id=1900050170 instance=ExtResource("2_au5do")]
 position = Vector2(68, 40)
+potions = 3
+immunity_duration = 0.5
+
+[node name="StaticBody2D4" parent="." unique_id=5827568 instance=ExtResource("5_tak7k")]
+position = Vector2(253, 84)
+
+[node name="StaticBody2D3" parent="." unique_id=1984072749 instance=ExtResource("5_tak7k")]
+position = Vector2(276, 84)
+
+[node name="StaticBody2D2" parent="." unique_id=1048282155 instance=ExtResource("5_tak7k")]
+position = Vector2(232, 83)
+
+[node name="StaticBody2D" parent="." unique_id=606339742 instance=ExtResource("5_tak7k")]
+position = Vector2(302, 84)
+
+[node name="door" parent="." unique_id=1950619840 instance=ExtResource("6_3650q")]
+position = Vector2(267, 84)
+
+[node name="Key" parent="." unique_id=1514974062 instance=ExtResource("7_3650q")]
+position = Vector2(114, 25)

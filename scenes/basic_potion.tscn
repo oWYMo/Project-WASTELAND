@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://basic_potion_01"]
+
+[ext_resource type="Texture2D" uid="uid://7ivrwnnc28xw" path="res://icon.svg" id="1_dd6ew"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcmo8"]
+size = Vector2(22, 22)
+
+[node name="basic_potion" type="Area2D" unique_id=1514974063 groups=["potions"]]
+collision_layer = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=296852950]
+modulate = Color(0.2, 1, 0.3, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_dd6ew")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=846705529]
+shape = SubResource("RectangleShape2D_gcmo8")

@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://8vmcwmpler05"]
+[gd_scene format=3 uid="uid://dele43qlqqkc8"]
 
-[ext_resource type="Script" uid="uid://c0gj0ft83b2qy" path="res://scripts/hide_spot.gd" id="1_v4ha3"]
+[ext_resource type="Script" path="res://scripts/hide_spot.gd" id="1_v4ha3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7d5o"]
 size = Vector2(30, 40)
 
-[node name="HideSpot" type="Area2D" unique_id=951658908 groups=["Hide_spots", "hide_spots"]]
+[node name="HideSpot" type="Area2D" unique_id=951658908 groups=["Hide_spots", "hide_spot", "hide_spots"]]
 collision_layer = 13
 collision_mask = 0
 script = ExtResource("1_v4ha3")

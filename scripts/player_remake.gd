@@ -12,17 +12,24 @@ var item_nearby: Area2D = null
 var item_type: String = ""
 var hide_spot_nearby: Area2D = null
 var is_hidden_in_spot: bool = false
+var door_nearby: Area2D = null
 
 ################################################################################
 # VARIABLES DE VIDA Y DAÑO
 ################################################################################
-@export var life: int = 10
-@export var max_life: int = 10
+@export var life: int = 12
+@export var max_life: int = 12
 @export var immunity_duration: float = 1.0  # Segundos de inmunidad después de recibir daño
+@export var knockback_distance: float = 15.0  # Distancia que se empuja al jugador al recibir daño (evita quedar pegado)
 @export var enemy_layer: int = 2  # Layer de colisión donde están los enemigos
 
 var is_immune: bool = false  # Si el jugador está en inmunidad temporal
 var damage_timer: Timer = null  # Timer que verifica si hay enemigos tocando
+
+# Barra de vida: 3 corazones (Healt_bar), 4 de daño por corazón perdido
+var heart_sprites: Array[AnimatedSprite2D] = []
+var active_hearts: int = 3  # Cuántos corazones están visibles (0–3)
+var damage_since_last_heart: int = 0
 
 ################################################################################
 # VARIABLES DE MOVIMIENTO
@@ -37,12 +44,35 @@ var last_direction: String = "down"
 # INICIALIZACIÓN
 ################################################################################
 func _ready():
-	# Crear y configurar el timer de daño
+	#Crear y configurar el timer de daño
 	damage_timer = Timer.new()
 	damage_timer.wait_time = immunity_duration  # Revisa cada X segundos
 	damage_timer.one_shot = false  # Se repite continuamente
-	damage_timer.timeout.connect(_on_damage_timer_timeout)  # Conectar señal
+	damage_timer.timeout.connect(_on_damage_timer_timeout) 
 	add_child(damage_timer)
+
+	#Se duplican los corazones
+	var healt_bar = $Healt_bar
+	var heart1 = healt_bar.get_node("Heart1")
+	heart_sprites = [heart1]
+	var heart_scale_multiplier := 2  #TAÑON
+	heart1.scale *= heart_scale_multiplier
+	var viewport_size = get_viewport_rect().size
+	var heart_positions = [
+		Vector2(viewport_size.x - 180, 35),
+		Vector2(viewport_size.x - 120, 35),
+		Vector2(viewport_size.x - 60, 35)
+	]
+	heart1.position = heart_positions[0]
+	for i in range(2):
+		var clone = heart1.duplicate() as AnimatedSprite2D
+		healt_bar.add_child(clone)
+		clone.position = heart_positions[i + 1]
+		clone.scale = heart1.scale
+		heart_sprites.append(clone)
+	for heart in heart_sprites:
+		heart.frame = 0
+		heart.stop()
 
 ################################################################################
 # PROCESO PRINCIPAL (CADA FRAME)
@@ -146,6 +176,22 @@ func handle_item_pickup():
 	if used_box:
 		return
 	
+	# Usar llave en puerta (use_key por defecto R)
+	if door_nearby != null and keys > 0 and Input.is_action_just_pressed("use_key"):
+		if door_nearby.open():
+			keys -= 1
+			print("Llave usada en la puerta. Llaves restantes: ", keys)
+		return
+	
+	# Recoger llave con R (use_key) cuando está cerca del item Key
+	if item_nearby != null and item_nearby.is_in_group("keys") and Input.is_action_just_pressed("use_key"):
+		keys += 1
+		print("Llaves recogidas: ", keys)
+		item_nearby.queue_free()
+		item_nearby = null
+		item_type = ""
+		return
+	
 	if item_nearby != null and Input.is_action_just_pressed("take_item"):
 		# Recoger item según su tipo
 		match item_type:
@@ -167,9 +213,13 @@ func handle_item_pickup():
 func _on_huntbox_item_area_entered(area: Area2D) -> void:
 	print("Entró algo al huntbox:", area.name)
 	print("Grupos del area:", area.get_groups())
-	#Logica de escondites
+	# Prioridad: escondites
 	if area.is_in_group("hide_spots"):
 		hide_spot_nearby = area
+		return
+	# Puerta (zona desbloqueable con llave)
+	if area.is_in_group("door"):
+		door_nearby = area
 		return
 	# Detectar qué tipo de item está cerca
 	item_nearby = area
@@ -184,9 +234,11 @@ func _on_huntbox_item_area_entered(area: Area2D) -> void:
 	print("Item cercano: ", item_type)
 
 func _on_huntbox_item_area_exited(area: Area2D) -> void:
-	#Logica del escondite
 	if area == hide_spot_nearby:
 		hide_spot_nearby = null
+		return
+	if area == door_nearby:
+		door_nearby = null
 		return
 	
 	# El item se alejó del rango
@@ -204,15 +256,25 @@ func handle_potion_use():
 		return
 	
 	if Input.is_action_just_pressed("use_poti") and potions > 0:
-		use_potion()
+		heal()
 
-func use_potion():
-	if life < max_life:
-		potions -= 1
-		life = min(life + 3, max_life)  # Curar 3 de vida sin exceder el máximo
-		print("Poción usada. Vida: ", life, " | Pociones restantes: ", potions)
-	else:
+## Cura 4 de vida y muestra un corazón de nuevo. No hace nada si life >= max_life (p. ej. 12).
+func heal() -> void:
+	if life >= max_life:
 		print("Vida completa, no necesitas curación")
+		return
+	if potions <= 0:
+		return
+	potions -= 1
+	life = min(life + 4, max_life)
+	# Mostrar de nuevo un corazón (frame 0, sin animación = "Heart")
+	if active_hearts < heart_sprites.size():
+		var heart = heart_sprites[active_hearts]
+		heart.visible = true
+		heart.frame = 0
+		heart.stop()
+		active_hearts += 1
+	print("Poción usada. Vida: ", life, " | Pociones restantes: ", potions)
 
 ################################################################################
 # SISTEMA DE DAÑO Y MUERTE
@@ -224,9 +286,9 @@ func _on_huntbox_enemy_area_entered(area: Area2D) -> void:
 	if area.collision_layer & (1 << (enemy_layer - 1)):
 		print("⚔️ Enemigo detectado en área: ", area.name)
 		
-		# Hacer daño inmediato si no está inmune
+		# Hacer daño inmediato si no está inmune (posición del enemigo para knockback)
 		if not is_immune:
-			take_damage()
+			take_damage(area.global_position)
 		
 		# Iniciar el timer de verificación continua
 		if damage_timer.is_stopped():
@@ -270,22 +332,41 @@ func _on_damage_timer_timeout():
 			print("♻️ Timer detectó enemigo: ", area.name)
 			break
 	
-	# Si hay enemigo y no está inmune, hacer daño
+	# Si hay enemigo y no está inmune, hacer daño (con knockback para no quedar pegado)
 	if enemy_present and not is_immune:
-		print("♻️ Timer: Enemigo presente, aplicando daño")
-		take_damage()
+		var enemy_area: Area2D = null
+		for a in areas_in_huntbox:
+			if a.collision_layer & (1 << (enemy_layer - 1)):
+				enemy_area = a
+				break
+		take_damage(enemy_area.global_position if enemy_area else Vector2.ZERO)
 	elif not enemy_present:
 		# Si no hay enemigo, detener el timer
 		print("✅ Timer: No hay enemigos, deteniendo timer")
 		damage_timer.stop()
 
-# PASO 4: Aplicar daño
-func take_damage() -> void:
+# PASO 4: Aplicar daño (source_position = posición del enemigo para knockback y no quedar pegado)
+func take_damage(source_position: Vector2 = Vector2.ZERO) -> void:
 	if is_immune or life <= 0:
 		return
 	
-	life -= 1
-	print("💔 Recibiste 1 de daño. Vida restante: ", life)
+	# Empujar al jugador lejos del enemigo para evitar quedar pegado
+	if source_position != Vector2.ZERO:
+		var knockback_dir = (global_position - source_position).normalized()
+		global_position += knockback_dir * knockback_distance
+	
+	life -= 4
+	damage_since_last_heart += 4
+	print("💔 Recibiste 4 de daño. Vida restante: ", life)
+
+	# Cada 4 de daño: animación Damage_Heart en un corazón y luego se oculta
+	if damage_since_last_heart >= 4 and active_hearts > 0:
+		damage_since_last_heart = 0
+		active_hearts -= 1
+		var heart = heart_sprites[active_hearts]
+		heart.sprite_frames.set_animation_loop("Damage_Heart", false)
+		heart.animation_finished.connect(_on_damage_heart_finished.bind(heart), CONNECT_ONE_SHOT)
+		heart.play("Damage_Heart")
 	
 	if life <= 0:
 		die()
@@ -302,6 +383,13 @@ func take_damage() -> void:
 	await get_tree().create_timer(immunity_duration).timeout
 	is_immune = false
 	print("⚔️ Inmunidad terminada - Listo para recibir daño")
+
+
+func _on_damage_heart_finished(heart: AnimatedSprite2D) -> void:
+	heart.sprite_frames.set_animation_loop("Damage_Heart", true)  # Restaurar loop para la escena
+	heart.visible = false
+	heart.frame = 0
+	heart.stop()
 
 func die() -> void:
 	print("💀 ¡Has muerto!")

@@ -7,7 +7,7 @@
 radius = 8.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7nlux"]
-size = Vector2(14, 14)
+size = Vector2(16, 16)
 
 [node name="enemy_remake" type="CharacterBody2D" unique_id=1237575968 groups=["enemy"]]
 collision_layer = 2
@@ -28,6 +28,7 @@ autostart = true
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1979626985]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=980886157]
+visible = false
 shape = SubResource("CircleShape2D_ctd35")
 
 [node name="hitbox" type="Area2D" parent="." unique_id=77262587]
