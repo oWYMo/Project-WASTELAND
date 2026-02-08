@@ -8,7 +8,8 @@ extends Area2D
 @export var block_movement_during_dialogue : bool = true
 
 @onready var exclamation: AnimatedSprite2D = $Exclamation
-
+@export var is_final_dialogue : bool = false # Activa esto solo en el último evento
+@export_file("*.tscn") var next_scene_path : String = "res://UI/main_menu_final.tscn"
 var activated := false
 var player_inside := false
 
@@ -22,7 +23,7 @@ func _ready():
 
 func _process(_delta):
 	if require_interaction:
-		if player_inside and Input.is_action_just_pressed("interact") and not activated:
+		if player_inside and Input.is_action_just_pressed("take_item") and not activated:
 			_trigger_dialogue()
 
 
@@ -44,23 +45,30 @@ func _on_body_exited(body):
 
 
 func _trigger_dialogue():
-
 	if block_movement_during_dialogue:
 		Global.is_dialogue_active = true
-	
+	Global.chose_run = false
 	DialogueManager.show_dialogue_balloon(dialogue_resource, start_node)
-
+	# ⏳ Esperar a que el diálogo termine
+	await DialogueManager.dialogue_ended
+	if block_movement_during_dialogue:
+		Global.is_dialogue_active = false
 	if one_shot:
 		activated = true
-	
 	_hide_icon()
+		# Caso 1: Es el diálogo final
+	if is_final_dialogue:
+		get_tree().change_scene_to_file(next_scene_path)
+		return # Salimos para que no ejecute lo demás
+
+	# Caso 2: El jugador eligió "Run" en el penúltimo diálogo
+	if Global.chose_run:
+		await get_tree().create_timer(3.0).timeout # Espera un segundo antes de cambiar
+		get_tree().change_scene_to_file(next_scene_path)
 
 
-# 🔥 Esta función detecta cuando el diálogo ya no está en pantalla
-func _wait_for_dialogue_to_close():
-	while DialogueManager.is_dialogue_active():
-		await get_tree().process_frame
-		
+
+	
 func _show_icon():
 	if exclamation:
 		exclamation.visible = true

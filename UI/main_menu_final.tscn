@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cwy4e846ktcp6"]
+
+[ext_resource type="Texture2D" uid="uid://cof27jbqo71c3" path="res://sprites/Gemini_Generated_Image_ckhbu4ckhbu4ckhb (1).png" id="1_jj8jv"]
+[ext_resource type="Script" uid="uid://r3k7i68yv4bh" path="res://UI/main_menu_final.gd" id="1_q4845"]
+
+[node name="MainMenu_Final" type="Control" unique_id=528526470]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q4845")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1656819261]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=380512444]
+position = Vector2(611.5, 326.25)
+scale = Vector2(0.90550596, 0.843099)
+texture = ExtResource("1_jj8jv")

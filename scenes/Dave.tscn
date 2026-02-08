@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dadul283frmvx"]
+
+[ext_resource type="Texture2D" uid="uid://mkr7vkw76d2f" path="res://sprites/Dave.png" id="1_cikce"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3bgc"]
+size = Vector2(18, 9)
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=5827568]
+scale = Vector2(1.5, 1.5)
+collision_layer = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=111079130]
+texture = ExtResource("1_cikce")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=54839545]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_s3bgc")

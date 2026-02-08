@@ -14,6 +14,7 @@ var is_patrolling: bool = false
 var patrol_target: Vector2
 var last_known_position: Vector2
 var patrol_timer: float = 0.0
+var inside_event := false
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
@@ -54,18 +55,23 @@ func actor_setup():
 	start_patrolling()
 
 func _physics_process(delta: float) -> void:
+	if Global.is_dialogue_active or Global.is_final_scene_active:
+		print("🧊 Enemigo congelado")
+		velocity = Vector2.ZERO
+		navigation_agent_2d.target_position = global_position
+		move_and_slide()
+		return
 	if not player:
 		return
-	
+	if player.inside_event:
+		velocity = Vector2.ZERO
+		return
 	check_player_visibility()
-	
 	if is_chasing:
 		chase_player()
 	elif is_patrolling:
 		patrol(delta)
-	if Global.is_dialogue_active:
-		velocity = Vector2.ZERO
-		return
+
 
 func check_player_visibility() -> void:
 	if not player:
@@ -122,8 +128,8 @@ func start_patrolling() -> void:
 func set_random_patrol_point() -> void:
 	# Generar punto aleatorio cerca de la última posición conocida
 	var random_offset = Vector2(
-		randf_range(-150, 150),
-		randf_range(-150, 150)
+		randf_range(-75, 75),
+		randf_range(-75, 75)
 	)
 	
 	if last_known_position != Vector2.ZERO:

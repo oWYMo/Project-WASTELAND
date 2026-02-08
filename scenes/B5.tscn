@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ctmjqevrvjd7"]
+
+[ext_resource type="Texture2D" uid="uid://b77ik1s38eywd" path="res://sprites/PostApocalypse_AssetPack_v1.1.2/Objects/Vehicles/Rust/Car_7_Rust_Truck/Car_7_Rust_Blue_Truck_.png" id="1_pa68w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1wxxu"]
+radius = 30.016663
+
+[node name="StaticBody2D" type="StaticBody2D" unique_id=5827568]
+collision_layer = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=111079130]
+texture = ExtResource("1_pa68w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=716038714]
+position = Vector2(-3, 2)
+shape = SubResource("CircleShape2D_1wxxu")

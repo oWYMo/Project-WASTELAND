@@ -21,8 +21,8 @@ var item_type: String = ""
 var hide_spot_nearby: Area2D = null
 var is_hidden_in_spot: bool = false
 var door_nearby: Area2D = null
-
-
+var inside_event: bool = false
+var controls_locked: bool = false
 ################################################################################
 # VARIABLES DE VIDA Y DAÑO
 ################################################################################
@@ -95,14 +95,17 @@ func _ready():
 # PROCESO PRINCIPAL (CADA FRAME)
 ################################################################################
 func _physics_process(_delta):
+	if Global.is_dialogue_active:
+		velocity = Vector2.ZERO
+		animated_sprite_2d.stop()
+		move_and_slide()
+		return
 	handle_box_input()      # Manejar entrar/salir de la caja
 	handle_item_pickup()    # Manejar recoger items
 	handle_potion_use()     # Manejar usar pociones
 	get_input()             # Obtener input del jugador y mover
 	move_and_slide()        # Aplicar el movimiento
-	if Global.is_dialogue_active:
-		velocity = Vector2.ZERO
-		return
+
 
 ################################################################################
 # SISTEMA DE MOVIMIENTO
@@ -252,6 +255,10 @@ func handle_item_pickup():
 
 
 func _on_huntbox_item_area_entered(area: Area2D) -> void:
+	if area.is_in_group("event"):
+		inside_event = true
+		print("🎬 Evento iniciado - movimiento bloqueado")
+		return
 	print("Entró algo al huntbox:", area.name)
 	print("Grupos del area:", area.get_groups())
 	# Prioridad: escondites
@@ -271,10 +278,16 @@ func _on_huntbox_item_area_entered(area: Area2D) -> void:
 		item_type = "box"
 	elif area.is_in_group("potions"):
 		item_type = "potion"
+	elif area.is_in_group("event"):
+		item_type = "event"
 	
 	print("Item cercano: ", item_type)
 
 func _on_huntbox_item_area_exited(area: Area2D) -> void:
+	if area.is_in_group("event"):
+		inside_event = false
+		print("🎬 Evento terminado - movimiento restaurado")
+		return
 	if area == hide_spot_nearby:
 		hide_spot_nearby = null
 		return
@@ -388,6 +401,8 @@ func _on_damage_timer_timeout():
 
 # PASO 4: Aplicar daño (source_position = posición del enemigo para knockback y no quedar pegado)
 func take_damage(source_position: Vector2 = Vector2.ZERO) -> void:
+	if inside_event:
+		return
 	if is_immune or life <= 0:
 		return
 	

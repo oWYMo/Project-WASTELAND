@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dpv8eqaqh47np"
+path="res://.godot/imported/CAJA.dialogue-c6d13fb5f460b86541e3ac9f9a04b980.tres"
+
+[deps]
+
+source_file="res://docs/dialogues/CAJA.dialogue"
+dest_files=["res://.godot/imported/CAJA.dialogue-c6d13fb5f460b86541e3ac9f9a04b980.tres"]
+
+[params]
+
+defaults=true

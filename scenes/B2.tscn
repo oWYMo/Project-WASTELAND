@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://daj6fsd5qjx8x"]
+[gd_scene format=3 uid="uid://uxqbp8cjasrn"]
 
-[ext_resource type="Texture2D" uid="uid://rl717klm7v8y" path="res://sprites/PostApocalypse_AssetPack_v1.1.2/Objects/Vehicles/Normal/Car_1/Car_1_Blue.png" id="1_caxtr"]
+[ext_resource type="Texture2D" uid="uid://eslxc5c4xn6w" path="res://sprites/PostApocalypse_AssetPack_v1.1.2/Objects/Vehicles/Rust/Car_1_Rust/Car_1_Rust_Green.png" id="1_a3qj0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bcsdx"]
 size = Vector2(20, 36)
@@ -9,7 +9,7 @@ size = Vector2(20, 36)
 collision_layer = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=111079130]
-texture = ExtResource("1_caxtr")
+texture = ExtResource("1_a3qj0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=171723010]
 shape = SubResource("RectangleShape2D_bcsdx")

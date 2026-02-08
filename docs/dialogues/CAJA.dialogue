@@ -1,0 +1,32 @@
+~ start
+
+Protagonist: This place feels… wrong.[wait=0.6][br]
+Protagonist: Why would anyone leave a house like this untouched?[wait=0.8][br]
+
+Dave: [speed=0.9]Hey… listen carefully.[/speed][wait=0.6][br]
+Dave: I think there’s something useful inside this house.[wait=0.6][br]
+
+Protagonist: Useful? Like what?[wait=0.5][br]
+
+Dave: [shake][speed=0.95]Explosives.[/speed][/shake][wait=0.8][br]
+
+Protagonist: …Explosives?[wait=0.6][br]
+
+Dave: Yeah.[wait=0.4] I saw some crates downstairs earlier.[wait=0.6][br]
+Dave: Military markings.[wait=0.5] Definitely not food supplies.[br]
+
+Protagonist: Why would there be explosives here?[wait=0.7][br]
+
+Dave: [i][speed=0.85]I don’t know…[/speed][/i][wait=0.6][br]
+Dave: But if those things can’t be killed the normal way…[wait=0.7][br]
+Dave: maybe we need something stronger.[wait=0.8][br]
+
+Protagonist: [speed=0.9]You’re saying we blow them up?[/speed][wait=0.7][br]
+
+Dave: I’m saying…[wait=0.6]
+Dave: if it comes to that,[wait=0.5] we’ll need every advantage we can get.[wait=1][br]
+
+Protagonist: [i][speed=0.8]Explosives in an abandoned house…[/speed][/i][wait=0.6][br]
+Protagonist: [i][speed=0.8]This just keeps getting worse.[/speed][/i][wait=1]
+
+=> END

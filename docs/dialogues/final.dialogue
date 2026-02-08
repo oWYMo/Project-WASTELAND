@@ -25,7 +25,7 @@ Radio: [stop]
 
 [wait=1.5]
 
-Dave: [shake][color=#ff0000][size=30]Remember?[/size][/color][/shake][wait=1]
+Dave: [shake][color=#ff0000]Remember?[/color][/shake][wait=1]
 
 [wait=2]
 

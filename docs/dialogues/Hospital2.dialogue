@@ -38,11 +38,13 @@ Protagonist: [i][speed=0.7]What can I do?[/speed][/i][wait=1]
 - Try to save them. (Don’t worry, Dave.)
 	Protagonist: Don’t worry, Dave![wait=0.5]
 	Protagonist: I’m coming![wait=0.6]
+	do Global.chose_run = false  # No corre
 	=> end_choice
 
 - Run. (I’m sorry, Dave.)
 	Protagonist: I’m sorry…[wait=0.6]
 	Protagonist: I can’t…[wait=0.6]
+	do Global.chose_run = true   # <--- ACTIVAMOS LA VARIABLE
 	=> end_choice
 
 
