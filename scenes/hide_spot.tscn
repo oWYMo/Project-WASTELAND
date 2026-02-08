@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dele43qlqqkc8"]
 
 [ext_resource type="Script" path="res://scripts/hide_spot.gd" id="1_v4ha3"]
+[ext_resource type="PackedScene" uid="uid://bbjjdddn5pgsx" path="res://scenes/enemy_remake.tscn" id="2_fqwb6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7d5o"]
 size = Vector2(30, 40)
@@ -15,5 +16,8 @@ light_mask = 9
 visibility_layer = 9
 shape = SubResource("RectangleShape2D_e7d5o")
 debug_color = Color(0.96051425, 0.20152774, 3.85046e-07, 0.41960785)
+
+[node name="enemy_remake" parent="." unique_id=1237575968 groups=["hidden_enemy"] instance=ExtResource("2_fqwb6")]
+start_hidden = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

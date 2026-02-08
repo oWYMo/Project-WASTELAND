@@ -5,7 +5,9 @@ extends CharacterBody2D
 @export var vision_range: float = 200.0  # Rango de visión inicial
 @export var patrol_duration: float = 2.0  # Tiempo caminando en una dirección
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+@export var start_hidden: bool = false
 
+var is_hidden_enemy: bool = false
 var player
 var is_chasing: bool = false
 var is_patrolling: bool = false
@@ -16,6 +18,36 @@ var patrol_timer: float = 0.0
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	call_deferred("actor_setup")
+	if start_hidden:
+		setup_hidden_enemy()
+
+func setup_hidden_enemy():
+	is_hidden_enemy = true
+	visible = false
+	set_physics_process(false)
+	velocity = Vector2.ZERO
+	if has_node("hitbox"):
+		$hitbox.monitoring = false
+		$hitbox.monitorable = false
+
+
+func wake_up():
+	if not is_hidden_enemy:
+		return
+	
+	print("💀 Algo salió del escondite... el chamuco w")
+	
+	is_hidden_enemy = false
+	visible = true
+	set_physics_process(true)
+	
+	if has_node("hitbox"):
+		$hitbox.monitoring = true
+		$hitbox.monitorable = true
+	
+	#Empieza persiguiendo directamente
+	is_chasing = true
+	is_patrolling = false
 
 func actor_setup():
 	await get_tree().physics_frame

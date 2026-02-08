@@ -39,6 +39,7 @@ potions=""
 player=""
 enemy=""
 hide_spot="Escondites"
+hidden_enemy="MIMIC"
 
 [input]
 

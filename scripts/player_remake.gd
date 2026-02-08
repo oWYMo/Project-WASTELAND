@@ -418,17 +418,28 @@ func die() -> void:
 func enter_hide_spot():
 	if not hide_spot_nearby:
 		return
-	#Teletransportar al centro del CollisionShape2D del hide spot
+	
+	# Buscar enemigo oculto dentro del hide_spot
+	for child in hide_spot_nearby.get_children():
+		if child.is_in_group("hidden_enemy"):
+			# Si hay enemigo escondido → despertarlo
+			child.wake_up()
+			print("⚠️ Intentaste esconderte... pero no estabas solo.")
+			return
+	
+	#Si no hay enemigo → esconderse normal
 	var shape = hide_spot_nearby.get_node_or_null("CollisionShape2D")
 	if shape:
 		global_position = shape.global_position
 	else:
 		global_position = hide_spot_nearby.global_position
+	
 	is_hidden_in_spot = true
-	used_box = true   #Recliclo Logica amo reclicar bro
+	used_box = true
 	velocity = Vector2.ZERO
 	animated_sprite_2d.visible = false
-	print("El jugador se esncondio en chingaderas")
+	
+	print("El jugador se escondió")
 
 func exit_hide_spot(direction: Vector2):
 	is_hidden_in_spot = false
