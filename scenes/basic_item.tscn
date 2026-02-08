@@ -1,6 +1,70 @@
 [gd_scene format=3 uid="uid://ddla5umw6fx4r"]
 
-[ext_resource type="Texture2D" uid="uid://7ivrwnnc28xw" path="res://icon.svg" id="1_dd6ew"]
+[ext_resource type="Texture2D" uid="uid://bfy5yue2kbdyq" path="res://sprites/!Assets.png" id="1_dd6ew"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcmo8"]
+atlas = ExtResource("1_dd6ew")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87dr0"]
+atlas = ExtResource("1_dd6ew")
+region = Rect2(1024, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3jkp"]
+atlas = ExtResource("1_dd6ew")
+region = Rect2(2048, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx2sl"]
+atlas = ExtResource("1_dd6ew")
+region = Rect2(3072, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dcos"]
+atlas = ExtResource("1_dd6ew")
+region = Rect2(4096, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qv3ra"]
+atlas = ExtResource("1_dd6ew")
+region = Rect2(5120, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6v3rn"]
+atlas = ExtResource("1_dd6ew")
+region = Rect2(6144, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w62po"]
+atlas = ExtResource("1_dd6ew")
+region = Rect2(7168, 0, 1024, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q70dk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcmo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87dr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3jkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx2sl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dcos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qv3ra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6v3rn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w62po")
+}],
+"loop": true,
+"name": &"Exclamation",
+"speed": 12.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gcmo8"]
 size = Vector2(22, 22)
@@ -8,10 +72,16 @@ size = Vector2(22, 22)
 [node name="item" type="Area2D" unique_id=1514974061]
 collision_layer = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=296852948]
-modulate = Color(1, 1, 0, 1)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_dd6ew")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=2116673745]
+position = Vector2(0, -12)
+scale = Vector2(0.015, 0.015)
+sprite_frames = SubResource("SpriteFrames_q70dk")
+animation = &"Exclamation"
+frame_progress = 0.074066
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=846705527]
 shape = SubResource("RectangleShape2D_gcmo8")
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

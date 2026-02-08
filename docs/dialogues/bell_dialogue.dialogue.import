@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://2ern170e854l"
+path="res://.godot/imported/bell_dialogue.dialogue-723bfe7a818a6986b9999067e685ec5e.tres"
+
+[deps]
+
+source_file="res://docs/dialogues/bell_dialogue.dialogue"
+dest_files=["res://.godot/imported/bell_dialogue.dialogue-723bfe7a818a6986b9999067e685ec5e.tres"]
+
+[params]
+
+defaults=true

@@ -1,6 +1,14 @@
 extends CharacterBody2D
 
 ################################################################################
+# DIALOGOS
+################################################################################
+@onready var box_dialogue = preload("res://docs/dialogues/box_dialogue.dialogue")
+@onready var key_dialogue = preload("res://docs/dialogues/key_dialogue.dialogue")
+@onready var potion_dialogue = preload("res://docs/dialogues/potion_dialogue.dialogue")
+@onready var bell_dialogue = preload("res://docs/dialogues/bell_dialogue.dialogue")
+
+################################################################################
 # VARIABLES DE ITEMS Y DETECCIÓN
 ################################################################################
 @export var boxes: int = 3
@@ -13,6 +21,7 @@ var item_type: String = ""
 var hide_spot_nearby: Area2D = null
 var is_hidden_in_spot: bool = false
 var door_nearby: Area2D = null
+
 
 ################################################################################
 # VARIABLES DE VIDA Y DAÑO
@@ -184,44 +193,60 @@ func update_box_ui():
 # SISTEMA DE ITEMS
 ################################################################################
 func handle_item_pickup():
+
 	# No puede recoger items mientras está en la caja
 	if used_box:
 		return
 	
-	# Usar llave en puerta (use_key por defecto R)
+	# Usar llave en puerta
 	if door_nearby != null and keys > 0 and Input.is_action_just_pressed("use_key"):
 		if door_nearby.open():
 			keys -= 1
 			print("Llave usada en la puerta. Llaves restantes: ", keys)
 		return
-	
-	# Recoger llave con R (use_key) cuando está cerca del item Key
-	if item_nearby != null and item_nearby.is_in_group("keys") and Input.is_action_just_pressed("use_key"):
-		keys += 1
-		print("Llaves recogidas: ", keys)
-		item_nearby.queue_free()
-		item_nearby = null
-		item_type = ""
-		return
-	
-	if item_nearby != null and Input.is_action_just_pressed("take_item"):
-		# Recoger item según su tipo
-		match item_type:
-			"Bell":
-				keys += 1
-				print("Campanas recogidas ", keys)
-			"box":
+
+	# Recoger objetos
+	if Input.is_action_just_pressed("take_item"):
+
+		var areas = $huntbox_item.get_overlapping_areas()
+
+		for area in areas:
+
+			# Verificamos que no sea null (seguridad extra)
+			if area == null:
+				continue
+
+			if area.is_in_group("boxes"):
+
+				DialogueManager.show_dialogue_balloon(box_dialogue, "start")
+
 				boxes += 1
 				update_box_ui()
-				print("Cajas recogidas: ", boxes)
-			"potion":
+
+			elif area.is_in_group("keys"):
+
+				DialogueManager.show_dialogue_balloon(key_dialogue, "start")
+
+				keys += 1
+
+			elif area.is_in_group("potions"):
+
+				DialogueManager.show_dialogue_balloon(potion_dialogue, "start")
+
 				potions += 1
-				print("Pociones recogidas: ", potions)
-		
-		# Eliminar el item del mundo
-		item_nearby.queue_free()
-		item_nearby = null
-		item_type = ""
+
+			elif area.is_in_group("bell"):
+
+				DialogueManager.show_dialogue_balloon(bell_dialogue, "start")
+
+			else:
+				continue  # Si no pertenece a ningún grupo válido, lo ignoramos
+
+			# Eliminamos el objeto después de recogerlo
+			area.queue_free()
+			break
+
+
 
 func _on_huntbox_item_area_entered(area: Area2D) -> void:
 	print("Entró algo al huntbox:", area.name)

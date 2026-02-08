@@ -112,3 +112,9 @@ position = Vector2(114, 25)
 
 [node name="item" parent="." unique_id=1514974061 groups=["boxes"] instance=ExtResource("8_h7kr7")]
 position = Vector2(71, 10)
+
+[node name="item2" parent="." unique_id=1697179372 groups=["keys"] instance=ExtResource("8_h7kr7")]
+position = Vector2(167, 18)
+
+[node name="item3" parent="." unique_id=104010568 groups=["potions"] instance=ExtResource("8_h7kr7")]
+position = Vector2(19, 28)
