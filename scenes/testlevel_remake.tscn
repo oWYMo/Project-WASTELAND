@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://rl717klm7v8y" path="res://sprites/PostApocalypse_AssetPack_v1.1.2/Objects/Vehicles/Normal/Car_1/Car_1_Blue.png" id="3_dldr6"]
 [ext_resource type="PackedScene" uid="uid://dele43qlqqkc8" path="res://scenes/hide_spot.tscn" id="4_dldr6"]
 [ext_resource type="PackedScene" uid="uid://daj6fsd5qjx8x" path="res://scenes/Open_Door.tscn" id="5_tak7k"]
+[ext_resource type="PackedScene" uid="uid://ta3vxeo27ty0" path="res://scenes/Event.tscn" id="5_x3g3q"]
+[ext_resource type="Resource" uid="uid://c7rwlhelokq" path="res://docs/dialogues/False_Calm.dialogue" id="6_48vlb"]
 [ext_resource type="PackedScene" uid="uid://bpu73ng6jbwwb" path="res://scenes/door.tscn" id="6_3650q"]
 [ext_resource type="PackedScene" path="res://scenes/key.tscn" id="7_3650q"]
 [ext_resource type="PackedScene" uid="uid://ddla5umw6fx4r" path="res://scenes/basic_item.tscn" id="8_h7kr7"]
@@ -87,8 +89,13 @@ tile_set = SubResource("TileSet_637it")
 [node name="HideSpot" parent="." unique_id=951658908 instance=ExtResource("4_dldr6")]
 position = Vector2(254, 204)
 
+[node name="Event" parent="." unique_id=1919845461 instance=ExtResource("5_x3g3q")]
+position = Vector2(339, 30)
+dialogue_resource = ExtResource("6_48vlb")
+require_interaction = false
+
 [node name="player_remake" parent="." unique_id=1900050170 instance=ExtResource("2_au5do")]
-position = Vector2(68, 40)
+position = Vector2(272, 26)
 potions = 3
 immunity_duration = 0.5
 

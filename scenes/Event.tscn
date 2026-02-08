@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://ta3vxeo27ty0"]
+
+[ext_resource type="Script" uid="uid://cpxpym4yndngx" path="res://Dialogue_event.gd" id="1_qe0id"]
+[ext_resource type="Texture2D" uid="uid://bfy5yue2kbdyq" path="res://sprites/!Assets.png" id="2_46xpc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjsmv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcmo8"]
+atlas = ExtResource("2_46xpc")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87dr0"]
+atlas = ExtResource("2_46xpc")
+region = Rect2(1024, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3jkp"]
+atlas = ExtResource("2_46xpc")
+region = Rect2(2048, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx2sl"]
+atlas = ExtResource("2_46xpc")
+region = Rect2(3072, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dcos"]
+atlas = ExtResource("2_46xpc")
+region = Rect2(4096, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qv3ra"]
+atlas = ExtResource("2_46xpc")
+region = Rect2(5120, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6v3rn"]
+atlas = ExtResource("2_46xpc")
+region = Rect2(6144, 0, 1024, 1024)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w62po"]
+atlas = ExtResource("2_46xpc")
+region = Rect2(7168, 0, 1024, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cejff"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gcmo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87dr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3jkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx2sl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dcos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qv3ra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6v3rn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w62po")
+}],
+"loop": true,
+"name": &"Exclamation",
+"speed": 12.0
+}]
+
+[node name="Event" type="Area2D" unique_id=1919845461]
+script = ExtResource("1_qe0id")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=508407922]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_hjsmv")
+
+[node name="Exclamation" type="AnimatedSprite2D" parent="." unique_id=1660510392]
+position = Vector2(0, 0.9999981)
+scale = Vector2(0.015, 0.015)
+sprite_frames = SubResource("SpriteFrames_cejff")
+animation = &"Exclamation"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

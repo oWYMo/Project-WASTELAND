@@ -100,6 +100,9 @@ func _physics_process(_delta):
 	handle_potion_use()     # Manejar usar pociones
 	get_input()             # Obtener input del jugador y mover
 	move_and_slide()        # Aplicar el movimiento
+	if Global.is_dialogue_active:
+		velocity = Vector2.ZERO
+		return
 
 ################################################################################
 # SISTEMA DE MOVIMIENTO

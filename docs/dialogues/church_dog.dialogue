@@ -1,0 +1,40 @@
+~ start
+
+Dog: [shake][speed=1.1]WOOF! WOOF![/speed][/shake][wait=0.6]
+
+Protagonist: [shake]AHHH![/shake][wait=0.6]
+
+Dave: What happened?[wait=0.4] Are you okay?[br]
+
+Protagonist: Yes…[wait=0.5] It’s just a big dog.[wait=0.4]
+Protagonist: A very… very big dog.[br]
+
+Dave: Did you just get scared by a puppy?[br]
+
+- He surprised me.
+	Protagonist: He surprised me.
+	Dave: HAHAHA.[wait=0.4]
+	=> dog_after
+
+- They are dangerous.
+	Protagonist: They are dangerous.
+	Dave: Oh really?[wait=0.4]
+	=> dog_after
+
+
+~ dog_after
+
+Dave: Whatever you say…[wait=0.4]
+Dave: Maybe your new puppy could help you later.[wait=0.5]
+Dave: If you don’t get too scared.[br]
+
+Protagonist: [i][speed=0.7]Why does he sound amused…?[/speed][/i][wait=0.7]
+
+Protagonist: Where is your mom, little friend?[br]
+
+Dog: [speed=0.6]Woof…[/speed][wait=0.5]
+Dog: [speed=0.6]*low whimper*[/speed][wait=0.8]
+
+Protagonist: [i][speed=0.7]It looks… lonely.[/speed][/i][wait=1]
+
+=> END

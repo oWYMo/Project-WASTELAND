@@ -1,0 +1,30 @@
+~ start
+
+Dave: Do you remember your birthday?[wait=0.5]
+Dave: The one where we hid three drag queens in your house?[br]
+
+Protagonist: Don’t start…[br]
+
+Dave: We had to hide them under your bed because your parents came home early.[wait=0.6]
+
+Protagonist: Why do you even remember that?[br]
+
+Dave: Did you ever get tested, by the way?[wait=0.6]
+
+Protagonist: I’d rather not talk about that.[br]
+
+Dave: But they were cute…[wait=0.4]
+Dave: For a guy.[br]
+
+Protagonist: [shake]DAVE![/shake][br]
+
+Dave: Okay, okay… I’ll drop it.[wait=0.5]
+Dave: You were blushing though.[br]
+
+Protagonist: I was NOT.[wait=0.6]
+
+Dave: [speed=0.8]You always blush when you lie.[/speed][wait=0.8]
+
+Protagonist: [i][speed=0.7]That never happened… did it?[/speed][/i][wait=1]
+
+=> END

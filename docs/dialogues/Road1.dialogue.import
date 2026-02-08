@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://byd6d4iu85j4p"
+path="res://.godot/imported/Road1.dialogue-fc2bb5753bfe70d52b4b843db97dfd0c.tres"
+
+[deps]
+
+source_file="res://docs/dialogues/Road1.dialogue"
+dest_files=["res://.godot/imported/Road1.dialogue-fc2bb5753bfe70d52b4b843db97dfd0c.tres"]
+
+[params]
+
+defaults=true

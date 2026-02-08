@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bfwdrw0ajdvxh"
+path="res://.godot/imported/supermarket.dialogue-6861a515ed6151d92d3a5654c0f03e25.tres"
+
+[deps]
+
+source_file="res://docs/dialogues/supermarket.dialogue"
+dest_files=["res://.godot/imported/supermarket.dialogue-6861a515ed6151d92d3a5654c0f03e25.tres"]
+
+[params]
+
+defaults=true

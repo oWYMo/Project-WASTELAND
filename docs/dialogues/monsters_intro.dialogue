@@ -1,0 +1,29 @@
+~ start
+Radio: [wave][speed=0.6]*static crackles...*[/speed][/wave][wait=0.8][br]
+
+Dave: Hey...[wait=0.4] I almost forgot to tell you.[wait=0.5] Be careful.[wait=0.4] Avoid them.[br]
+
+- Why should I be careful?
+	Protagonist: Why should I be careful?
+	=> explain
+
+- Avoid who?
+	Protagonist: Avoid who?
+	=> explain
+
+
+~ explain
+Dave: [shake]God...[/shake][wait=0.6] I forgot you’re clueless.[wait=0.5][br]
+
+Dave: Look…[wait=0.5] you’re going to see some...[wait=0.6] [color=#aa0000][speed=0.9]“things”[/speed][/color].[wait=0.8][br]
+
+Dave: [speed=0.8]Do not try to kill them.[wait=0.5] It’s not possible.[/speed][wait=0.6][br]
+
+Dave: If you want to survive…[wait=0.5] [shake]hide from them[/shake][wait=0.4] or [speed=1.1]run.[/speed][wait=0.3] No matter what.[br]
+
+Radio: [wave][speed=0.6]*low interference hum...*[/speed][/wave][wait=0.8][br]
+
+Protagonist: [speed=0.7][i]I should listen to Dave…[/i][wait=0.6][br]
+Protagonist: [i]If I see them… I’ll hide.[/i][/speed][wait=1]
+
+=> END

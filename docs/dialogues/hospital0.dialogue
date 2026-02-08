@@ -1,0 +1,41 @@
+~ start
+
+Dave: You’re almost there![wait=0.5]
+Dave: Wow…[wait=0.4]
+Dave: I never thought you would actually survive.[br]
+
+Protagonist: Thanks…[wait=0.4]
+Protagonist: For having faith in me.[br]
+
+Dave: Hey![wait=0.4]
+Dave: But [color=#ff0000]you[/color] did it.[wait=0.5]
+Dave: [color=#ff0000]We made it.[/color][br]
+
+Radio: [wave][speed=0.6]*heavy static interference*[/speed][/wave][wait=1]
+
+- I can’t hear you well…
+	Protagonist: I can’t hear you well…[wait=0.6]
+	=> glitch
+
+
+~ glitch
+
+Protagonist: …[wait=1]
+
+Protagonist: Dave…[wait=0.6]
+Protagonist: How did you know where I am?[wait=0.6]
+Protagonist: I never told you.[br]
+
+Dave: I know the city too well.[wait=0.5]
+Dave: We grew up here.[wait=0.5]
+Dave: Remember?[br]
+
+Protagonist: Actually…[wait=0.6]
+Protagonist: I don’t.[br]
+
+Dave: [color=#ff0000][speed=0.7]Remember…[/speed][/color][wait=0.6]
+Dave: [color=#ff0000][speed=0.6]Remember.[/speed][/color][wait=0.8]
+
+Radio: [fade length=40 connected=true][speed=0.4]*distorted whisper overlapping static*[/speed][/fade]
+
+=> END

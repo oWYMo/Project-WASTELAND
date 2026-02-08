@@ -63,6 +63,9 @@ func _physics_process(delta: float) -> void:
 		chase_player()
 	elif is_patrolling:
 		patrol(delta)
+	if Global.is_dialogue_active:
+		velocity = Vector2.ZERO
+		return
 
 func check_player_visibility() -> void:
 	if not player:

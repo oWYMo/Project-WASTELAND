@@ -1,0 +1,18 @@
+~ start
+
+Protagonist: Wow… a bomb.[wait=0.6] It might be useful.[wait=0.5][br]
+Protagonist: But it’s so convenient…[wait=0.5] I wonder how it ended up here…[br][wait=0.8]
+
+Radio: [wave][speed=0.6]zzzt—kssshhh—brrrp[/speed][/wave][wait=1][br]
+
+Protagonist: [i][speed=0.7]...I didn’t even turn the radio on.[/speed][/i][wait=1][br]
+
+Dave: [speed=0.9]Shhh…[/speed][wait=0.6] Do not question the plot.[wait=0.6][br]
+Dave: You’re going to need it…[wait=0.5] if you want to keep going.[br]
+
+Protagonist: [i][speed=0.6]how are you talking, Dave...?[/speed][/i][wait=0.6][br]
+Protagonist: [i]There was no signal.[/i][wait=0.6][br]
+
+Radio: [fade length=25 connected=true][speed=0.5]*low distortion hum*[/speed][/fade][wait=1]
+
+=> END

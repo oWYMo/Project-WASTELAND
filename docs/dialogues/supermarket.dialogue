@@ -1,0 +1,56 @@
+~ start
+
+Dave: Do you know why eggs don’t tell jokes?[wait=0.6]
+
+- Why?
+	Protagonist: Why?
+	Dave: Because they’d crack up.[wait=0.5]
+	Protagonist: *Laugh*
+	Dave: I was just checking if you’re still alive.
+	=> after_joke
+
+- Don’t answer…
+	Protagonist: ...
+	Dave: Because they’d crack up.[wait=0.5]
+	Protagonist: *Sigh*
+	Dave: Come on, I was just checking if you’re still alive.
+	=> after_joke
+
+
+~ after_joke
+
+Protagonist: I am. So don’t bother me.[wait=0.5]
+
+Dave: Calm down.[wait=0.4] You can’t take a joke…[wait=0.5] Where are you right now?[br]
+
+Protagonist: I’m passing through a supermarket.[wait=0.6]
+
+Dave: A supermarket?[wait=0.5] Okay… you’ve had luck until now…[wait=0.6] but that means nothing.[br]
+
+Dave: Be real with me.[wait=0.4] Do you have any common sense…[wait=0.5] or do you just enjoy making the [shake][speed=1.0][color=#aa0000]WORST[/color][/speed][/shake] possible decisions?[br]
+
+Protagonist: I don’t see the problem…[wait=0.6]
+
+Dave: [shake]You DON’T see the issue?[/shake][wait=0.6] Really??[br]
+
+Dave: That place screams danger from a mile away.[wait=0.6]
+Dave: I think it has a big sign that says:[wait=0.5][br]
+Dave: [color=#ff0000][speed=0.9]“DO NOT ENTER.”[/speed][/color][wait=0.8]
+
+Protagonist: I get it.[wait=0.5]
+
+Dave: Do you?[wait=0.4] *Sigh*…[wait=0.6] Just be careful.[wait=0.5] I want you to stay alive.[br]
+
+Protagonist: That’s sweet…[wait=0.4] Do you care that much about me?[br]
+
+Dave: No.[wait=0.4] You still owe me five dollars.[wait=0.5] I can’t let you die until you pay me.[br]
+
+Protagonist: Whatever you say…[wait=0.5] I could try another route.[br]
+
+Dave: Maybe you should go in.[wait=0.5]
+Dave: You might find something useful.[wait=0.5]
+Dave: Besides… you’ll lose too much time if you turn back.[wait=0.7]
+
+Protagonist: [i][speed=0.7]Didn’t he just tell me not to enter…?[/speed][/i][wait=1]
+
+=> END

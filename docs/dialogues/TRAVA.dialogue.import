@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://brq66g6reqk0s"
+path="res://.godot/imported/TRAVA.dialogue-ce69d0fd5022c2146ff467c1e7c2fb03.tres"
+
+[deps]
+
+source_file="res://docs/dialogues/TRAVA.dialogue"
+dest_files=["res://.godot/imported/TRAVA.dialogue-ce69d0fd5022c2146ff467c1e7c2fb03.tres"]
+
+[params]
+
+defaults=true

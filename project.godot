@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 DialogueManager="*uid://c3rodes2l3gxb"
+Global="*uid://1dy048tu5c1m"
 
 [dialogue_manager]
 
@@ -100,7 +101,7 @@ interact={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://docs/dialogues/dialogue_test.dialogue", "res://docs/dialogues/box_dialogue.dialogue", "res://docs/dialogues/key_dialogue.dialogue", "res://docs/dialogues/potion_dialogue.dialogue", "res://docs/dialogues/bell_dialogue.dialogue")
+locale/translations_pot_files=PackedStringArray("res://docs/dialogues/dialogue_test.dialogue", "res://docs/dialogues/box_dialogue.dialogue", "res://docs/dialogues/key_dialogue.dialogue", "res://docs/dialogues/potion_dialogue.dialogue", "res://docs/dialogues/bell_dialogue.dialogue", "res://docs/dialogues/intro.dialogue", "res://docs/dialogues/monsters_intro.dialogue", "res://docs/dialogues/first_key.dialogue", "res://docs/dialogues/explosives.dialogue", "res://docs/dialogues/first_box.dialogue", "res://docs/dialogues/supermarket.dialogue", "res://docs/dialogues/Mimic_house.dialogue", "res://docs/dialogues/park.dialogue", "res://docs/dialogues/church_warning.dialogue", "res://docs/dialogues/church_dog.dialogue", "res://docs/dialogues/dog_toy.dialogue", "res://docs/dialogues/False_Calm.dialogue", "res://docs/dialogues/Road1.dialogue", "res://docs/dialogues/Road2.dialogue", "res://docs/dialogues/TRAVA.dialogue", "res://docs/dialogues/hospital0.dialogue", "res://docs/dialogues/Hospital2.dialogue", "res://docs/dialogues/final.dialogue", "res://docs/dialogues/trash_hide.dialogue")
 
 [layer_names]
 

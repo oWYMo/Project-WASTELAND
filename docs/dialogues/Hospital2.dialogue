@@ -1,0 +1,55 @@
+~ start
+
+Radio: [wave][speed=0.6]*Static interference continues*[/speed][/wave][wait=1.2]
+
+Protagonist: Where is everyone…?[wait=0.8]
+
+Protagonist: Hello?[wait=0.6]
+Protagonist: Dave?[wait=1]
+
+Protagonist: [i][speed=0.7]Maybe they’re hiding…[/speed][/i][wait=0.6]
+Protagonist: [i][speed=0.7]I was talking to Dave two minutes ago…[/speed][/i][wait=0.6]
+Protagonist: [i][speed=0.7]They must be somewhere in here.[/speed][/i][wait=1]
+
+Radio: [wave][speed=0.5]*Static grows louder*[/speed][/wave][wait=1]
+
+Dave: Yxx arx…[wait=0.3] cxx xou hxar mx…?[wait=0.8]
+
+Protagonist: Dave?[wait=0.6]
+Protagonist: I can’t hear you![br]
+
+Dave: Thx… cxxnxxctixn…[wait=0.5]
+Dave: thx rxal…[wait=0.6]
+
+Protagonist: The real what?![br]
+
+Dave: …mxnstxr…[wait=0.4] thxy’xr hxrr…[wait=0.9]
+
+Protagonist: Monsters?[wait=0.6]
+Protagonist: They’re in here?![wait=0.6]
+Protagonist: Dave?![br]
+
+Dave: Cxn… yxu… hxlp… xs…?[wait=1]
+
+Protagonist: [i][speed=0.7]Oh my God…[/speed][/i][wait=0.5]
+Protagonist: [i][speed=0.7]Dave and the others are in danger…[/speed][/i][wait=0.6]
+Protagonist: [i][speed=0.7]What can I do?[/speed][/i][wait=1]
+
+- Try to save them. (Don’t worry, Dave.)
+	Protagonist: Don’t worry, Dave![wait=0.5]
+	Protagonist: I’m coming![wait=0.6]
+	=> end_choice
+
+- Run. (I’m sorry, Dave.)
+	Protagonist: I’m sorry…[wait=0.6]
+	Protagonist: I can’t…[wait=0.6]
+	=> end_choice
+
+
+~ end_choice
+
+Radio: [stop]
+
+Dave: [color=#ff0000][speed=0.6]They murdered us.[/speed][/color][wait=1.5]
+
+=> END

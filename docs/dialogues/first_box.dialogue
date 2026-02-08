@@ -1,0 +1,23 @@
+~ start
+
+Protagonist: Look… a box.[wait=0.5] This could be useful for something.[br][wait=0.6]
+
+Dave: A box?[wait=0.4] Why would you think a box could be useful for anything?[br]
+
+Protagonist: I don’t know…[wait=0.4] I might need it.[br]
+
+Dave: I’m starting to worry about your mental health.[wait=0.6][br]
+Dave: Why would you carry that…[wait=0.5] and think you can use it later?[br]
+
+Protagonist: [shake][speed=1.1]I DON’T KNOW, MAN![/speed][/shake][wait=0.6][br]
+Protagonist: Because I want to![wait=0.4] It’s my own freaking business if I want to carry a box![br]
+
+Radio: [wait=0.8]
+
+Dave: Whatever…[wait=0.5] do whatever you want.[wait=0.5] It’s just trash.[br]
+
+Protagonist: [speed=0.8]Maybe…[wait=0.5] I could use it to hide.[/speed][wait=0.8][br]
+
+Protagonist: [i][speed=0.6]Why does he always argue with me…?[/speed][/i][wait=1]
+
+=> END

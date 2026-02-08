@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cy40fdfkb6k5u"
+path="res://.godot/imported/church_dog.dialogue-e21fe839644425548943ceaf2b5039a9.tres"
+
+[deps]
+
+source_file="res://docs/dialogues/church_dog.dialogue"
+dest_files=["res://.godot/imported/church_dog.dialogue-e21fe839644425548943ceaf2b5039a9.tres"]
+
+[params]
+
+defaults=true

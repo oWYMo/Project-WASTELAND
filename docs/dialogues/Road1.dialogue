@@ -1,0 +1,39 @@
+~ start
+
+Protagonist: What route are you talking about, by the way?[br]
+
+- North.
+	Protagonist: North.
+	Dave: You can’t pass there, idiot.[wait=0.5]
+	Dave: Explore the east side of the city.[wait=0.5]
+	Dave: The military left a lot of equipment.[wait=0.5]
+	Dave: Maybe you’ll find another explosive.[br]
+	=> after_route
+
+- South.
+	Protagonist: South.
+	Dave: Are you stupid?[wait=0.4]
+	Dave: You just came from there, wide-face.[wait=0.6]
+	Dave: Go east.[wait=0.4]
+	Dave: The military left equipment there.[wait=0.5]
+	Dave: Maybe you’ll find something explosive.[br]
+	=> after_route
+
+
+~ after_route
+
+Protagonist: Can you speak properly or do you only know how to insult people?[br]
+
+Dave: I’m just being honest.[wait=0.5]
+Dave: It’s like you don’t know the city at all…[wait=0.6]
+Dave: You literally chose the worst possible route.[br]
+
+Protagonist: I don’t remember much…[wait=0.6]
+
+Dave: Are you sure?[wait=0.8]
+
+Protagonist: What are you implying?[br]
+
+Dave: Just go to the [color=#ff0000]EAST.[/color][wait=1]
+
+=> END

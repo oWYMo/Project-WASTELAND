@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://c7rwlhelokq"
+path="res://.godot/imported/False_Calm.dialogue-f2e22439b4aae7e28dfdb2c4b3cd4fe2.tres"
+
+[deps]
+
+source_file="res://docs/dialogues/False_Calm.dialogue"
+dest_files=["res://.godot/imported/False_Calm.dialogue-f2e22439b4aae7e28dfdb2c4b3cd4fe2.tres"]
+
+[params]
+
+defaults=true

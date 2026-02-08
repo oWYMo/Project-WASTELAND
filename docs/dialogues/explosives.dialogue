@@ -1,0 +1,19 @@
+~ start
+
+Protagonist: This place is locked…[wait=0.5] I could blow it up to pass.[br][wait=0.8]
+
+Dave: I’ll be careful with that.[wait=0.5] If you use explosives,[wait=0.4] keep your distance.[wait=0.5] You don’t want to get hurt.[br]
+
+Protagonist: I know what I’m doing.[wait=0.6]
+
+Dave: [shake]No, you don’t.[/shake][wait=0.6][br]
+Dave: That’s exactly why I’m telling you.[wait=0.5][br]
+Dave: You lack the ability of…[wait=0.6] [speed=0.8][color=#aa0000]“having common sense.”[/color][/speed][wait=0.8][br]
+
+Dave: So keep your distance…[wait=0.6] or you could either die…[wait=0.6] or get hurt.[br]
+
+Protagonist: [i][speed=0.7]Why does he sound closer…?[/speed][/i][wait=0.8]
+
+Radio: [wave][speed=0.6]*brief static pulse*[/speed][/wave]
+
+=> END

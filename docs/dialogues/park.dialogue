@@ -1,0 +1,45 @@
+~ start
+
+Dave: Hey…[wait=0.4] How have you been?[wait=0.5] Are you getting closer?[br]
+
+Protagonist: Yeah.[wait=0.4] I’m halfway there.[wait=0.5]
+Protagonist: I took the central route.[wait=0.4] I’m passing through Sunfall Central Park.[br]
+
+Dave: [shake][speed=1.0]WHAT THE HELL?![/speed][/shake][wait=0.6]
+Dave: Why would you do that??[wait=0.4]
+Dave: Are you stupid… or just suicidal?[br]
+
+Protagonist: What are you talking about?[wait=0.5]
+Protagonist: This is the fastest route.[br]
+
+Dave: And the most infested.[wait=0.6]
+Dave: You’re a dead man, idiot.[wait=0.5][br]
+
+Dave: Well…[wait=0.5]
+Dave: It was kinda nice meeting you.[wait=0.5]
+Dave: I don’t think I’ll miss you though.[br]
+
+Protagonist: You told me to take this route.[wait=0.6]
+
+Dave: [shake]No, I didn’t.[/shake][wait=0.6]
+Dave: Don’t put that on me.[wait=0.5]
+
+Protagonist: Yes, you did.[wait=0.5]
+
+Dave: No.[wait=0.4] I didn’t.[wait=0.4] You’re mixing things up.[wait=0.6][br]
+
+Protagonist: [i][speed=0.7]Am I…?[/speed][/i][wait=0.8][br]
+
+Dave: Since these are probably your last moments…[wait=0.6]
+Dave: I have to confess something…[wait=0.5]
+Dave: Your grandfather and I—[br]
+
+Protagonist: [shake][speed=1.1]SHUT UP![/speed][/shake][wait=0.6]
+Protagonist: Don’t be so dramatic.[br]
+
+Dave: Just don’t die.[wait=0.6]
+Dave: Good luck.[wait=1]
+
+Radio: [fade length=30 connected=true][speed=0.5]*low distorted whispering under static*[/speed][/fade]
+
+=> END

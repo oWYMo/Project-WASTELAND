@@ -1,0 +1,16 @@
+~ start
+
+Dave: Be careful…[wait=0.5] I don’t recommend you cross the church.[br]
+
+Protagonist: It looks peaceful.[wait=0.4]
+Protagonist: Maybe God is protecting me.[wait=0.5]
+Protagonist: Isn’t this safer than the rest of the city?[br]
+
+Dave: [color=#ff0000][speed=0.8]Do not trust the silence.[/speed][/color][wait=0.8][br]
+
+Protagonist: [i][speed=0.7]What does he mean by that…?[/speed][/i][wait=0.6]
+Protagonist: [i]I’ll keep it in mind.[/i][wait=1]
+
+Radio: [fade length=20 connected=true][speed=0.5]*distant low hum*[/speed][/fade]
+
+=> END

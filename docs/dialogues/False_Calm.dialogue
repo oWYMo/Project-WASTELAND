@@ -1,0 +1,41 @@
+~ start
+
+Protagonist: Either I made the right choice…[wait=0.5]
+Protagonist: Or you’re just overdramatic.[br]
+
+Dave: What do you mean?[br]
+
+Protagonist: I barely found anything on the way.[wait=0.5]
+Protagonist: You said the city is infested.[br]
+
+Dave: It is.[wait=0.5]
+Dave: But I also know there’s a route nobody takes.[wait=0.6]
+Dave: Even if it looks safe…[wait=0.6]
+Dave: They never cross it and survive.[br]
+
+Protagonist: And you’re telling me this now??[br]
+
+Dave: I’m sorry, man![wait=0.5]
+Dave: I didn’t think it was important.[wait=0.4]
+Dave: Besides…[wait=0.4]
+Dave: I don’t think that applies to you.[wait=0.6]
+Dave: You’re close.[br]
+
+Protagonist: Yeah…[wait=0.4]
+Protagonist: Maybe I’m just amazing at avoiding monsters.[br]
+
+Dave: Or maybe…[wait=0.6]
+Dave: They’re afraid of you.[wait=0.8][br]
+
+Protagonist: [i][speed=0.7]Afraid… of me?[/speed][/i][wait=0.8]
+
+- You’re not funny.
+	Protagonist: You’re not funny.
+	Dave: Right…[wait=0.6]
+	=> END
+
+- What route are you talking about?
+	Protagonist: What route are you talking about?
+	Dave: North…[wait=0.4] east…[wait=0.4]
+	Dave: I don’t know.[wait=0.8]
+	=> END

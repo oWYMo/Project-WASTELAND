@@ -1,0 +1,28 @@
+~ start
+
+Dave: Something feels off.[wait=0.6]
+
+Protagonist: How do you know that?[wait=0.5]
+
+Dave: I have a sixth sense, okay?[wait=0.4] Don’t question me.[wait=0.5]
+Dave: Where are you right now?[br]
+
+Protagonist: I just got into a house.[wait=0.6]
+
+Dave: [shake]You did WHAT?[/shake][wait=0.6][br]
+
+Dave: Be careful.[wait=0.5]
+Dave: Check if it’s empty.[wait=0.5]
+Dave: Never enter a strange house so confidently…[br]
+
+Protagonist: You’re just being paranoid.[wait=0.6]
+
+Dave: You’re being reckless.[wait=0.5]
+Dave: There’s something wrong in there.[wait=0.6]
+
+Protagonist: [i][speed=0.7]Why does he sound closer inside this house…?[/speed][/i][wait=0.8][br]
+
+Dave: [speed=0.9]If something looks empty…[/speed][wait=0.5]
+Dave: [color=#aa0000]it probably isn’t.[/color][wait=1]
+
+=> END

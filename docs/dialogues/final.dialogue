@@ -1,0 +1,32 @@
+~ start
+
+Radio: [wave][speed=0.6]*Static interference continues*[/speed][/wave][wait=1.2]
+
+Protagonist: …[wait=1]
+
+Protagonist: Dave…?[wait=0.8]
+
+[wait=1.2]
+
+Protagonist: No…[wait=0.6]
+Protagonist: No, no, no…[wait=1]
+
+Protagonist: [i][speed=0.7]That’s not funny…[/speed][/i][wait=0.8]
+
+[wait=1.5]
+
+Protagonist: …[wait=1]
+
+Protagonist: The radio…[wait=0.6]
+
+Protagonist: [speed=0.8]There are no batteries.[/speed][wait=1.2]
+
+Radio: [stop]
+
+[wait=1.5]
+
+Dave: [shake][color=#ff0000][size=30]Remember?[/size][/color][/shake][wait=1]
+
+[wait=2]
+
+=> END

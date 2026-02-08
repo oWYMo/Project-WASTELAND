@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bfvjmbkuipes6"
+path="res://.godot/imported/explosives.dialogue-b42ecbcd727ec773777b8534814ece91.tres"
+
+[deps]
+
+source_file="res://docs/dialogues/explosives.dialogue"
+dest_files=["res://.godot/imported/explosives.dialogue-b42ecbcd727ec773777b8534814ece91.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://b2b0uj0p6rjla"
+path="res://.godot/imported/church_warning.dialogue-7ccd540b3141240a5564ce0fe3bc2c45.tres"
+
+[deps]
+
+source_file="res://docs/dialogues/church_warning.dialogue"
+dest_files=["res://.godot/imported/church_warning.dialogue-7ccd540b3141240a5564ce0fe3bc2c45.tres"]
+
+[params]
+
+defaults=true

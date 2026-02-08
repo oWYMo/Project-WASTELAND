@@ -1,0 +1,52 @@
+~ start
+
+Protagonist: What is this smell…?[wait=0.6]
+
+Protagonist: [speed=0.8]It’s like rotten meat… mixed with mud.[/speed][wait=0.8]
+
+Protagonist: These piles…[wait=0.5]
+Protagonist: They’re not random.[br][wait=0.6]
+
+Protagonist: [i][speed=0.7]They made this…[/speed][/i][wait=0.6]
+Protagonist: [i][speed=0.7]Like a nest.[/speed][/i][wait=1]
+
+Dave: Don’t get close.[wait=0.6]
+Dave: That’s where they rest.[br]
+
+Protagonist: Rest…?[wait=0.6]
+
+Dave: Or wait.[wait=0.8]
+
+[wait=1]
+
+Protagonist: …[wait=1]
+
+Protagonist: If they rest here…[wait=0.6]
+Protagonist: That means they don’t expect danger from inside.[br][wait=0.8]
+
+Dave: What are you thinking.[wait=0.6]
+
+Protagonist: They ignore the trash.[wait=0.6]
+Protagonist: They ignore the smell.[wait=0.6]
+Protagonist: They ignore what feels… familiar.[br][wait=1]
+
+Dave: Don’t even consider it.[wait=0.6]
+
+Protagonist: [slow][speed=0.7]If I stay still…[/speed][/slow][wait=0.6]
+Protagonist: [slow][speed=0.7]If I don’t breathe too loud…[/speed][/slow][wait=0.8]
+Protagonist: [slow][speed=0.7]I could hide inside.[/speed][/slow][wait=1]
+
+Dave: That’s insane.[wait=0.6]
+Dave: You’re not garbage.[br]
+
+Protagonist: [speed=0.8]Right now…[/speed][wait=0.5]
+Protagonist: [color=#aaaaaa][speed=0.7]garbage survives longer than people.[/speed][/color][wait=1.2]
+
+[wait=1]
+
+Protagonist: I’ll use it.[wait=0.6]
+Protagonist: If they come… I’ll hide inside their trash.[br][wait=1]
+
+Radio: [wave][speed=0.6]*Soft static*[/speed][/wave][wait=1]
+
+=> END
