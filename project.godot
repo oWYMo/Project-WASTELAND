@@ -14,10 +14,11 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Project-WASTELAND"
+config/name="Hyde"
 run/main_scene="uid://bl7026gra6ihg"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0, 0, 0, 1)
+config/icon="uid://dldit0tyj7hag"
 
 [autoload]
 
@@ -30,6 +31,7 @@ runtime/balloon_path="res://scenes/Dialogos/balloon.tscn"
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [editor_plugins]
