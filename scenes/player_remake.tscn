@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://ctxs2k0r2i2q6" path="res://sprites/player_animations.png" id="2_mvqw3"]
 [ext_resource type="Texture2D" uid="uid://cc5dl2muw3yrw" path="res://sprites/Hearts/PNG/animated/border/heart_animated_1.png" id="3_sitep"]
 [ext_resource type="Texture2D" uid="uid://cxedp81h3bc3l" path="res://sprites/caja.png" id="4_aw3di"]
+[ext_resource type="Texture2D" uid="uid://c7aytkjq6btod" path="res://sprites/Sprite-0002.png" id="5_mvqw3"]
+[ext_resource type="Texture2D" uid="uid://btvdo0tygnxu" path="res://sprites/Gemini_Generated_Image_wgp45zwgp45zwgp4-removebg-preview.png" id="6_42yco"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fieof"]
 atlas = ExtResource("2_mvqw3")
@@ -297,7 +299,6 @@ animations = [{
 collision_layer = 9
 collision_mask = 8
 script = ExtResource("1_5luv3")
-keys = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=726622179]
 scale = Vector2(2, 2)
@@ -369,6 +370,44 @@ label_settings = SubResource("LabelSettings_mvqw3")
 position = Vector2(-27, -5)
 scale = Vector2(7, 7)
 texture = ExtResource("4_aw3di")
+
+[node name="Key_bar" type="CanvasLayer" parent="." unique_id=311987735]
+
+[node name="KeyUI" type="HBoxContainer" parent="Key_bar" unique_id=262557534]
+offset_left = 124.0
+offset_top = 59.0
+offset_right = 197.0
+offset_bottom = 100.0
+
+[node name="KeyCount" type="Label" parent="Key_bar/KeyUI" unique_id=1180409612]
+z_index = 1
+layout_mode = 2
+text = "x0"
+label_settings = SubResource("LabelSettings_mvqw3")
+
+[node name="KeySprite" type="Sprite2D" parent="Key_bar/KeyUI" unique_id=525052178]
+position = Vector2(42, -19)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("5_mvqw3")
+
+[node name="Potion_bar" type="CanvasLayer" parent="." unique_id=1202210029]
+
+[node name="PotionUI" type="HBoxContainer" parent="Potion_bar" unique_id=709135609]
+offset_left = -129.0
+offset_top = 78.0
+offset_right = -56.0
+offset_bottom = 101.0
+
+[node name="PotionCount" type="Label" parent="Potion_bar/PotionUI" unique_id=1434029591]
+z_index = 1
+layout_mode = 2
+text = "x0"
+label_settings = SubResource("LabelSettings_mvqw3")
+
+[node name="PotionSprite" type="Sprite2D" parent="Potion_bar/PotionUI" unique_id=454040842]
+position = Vector2(-29.999994, -9.999999)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_42yco")
 
 [connection signal="area_entered" from="huntbox_enemy" to="." method="_on_huntbox_enemy_area_entered"]
 [connection signal="area_entered" from="huntbox_item" to="." method="_on_huntbox_item_area_entered"]

@@ -11,10 +11,9 @@ extends CharacterBody2D
 ################################################################################
 # VARIABLES DE ITEMS Y DETECCIÓN
 ################################################################################
-@export var boxes: int = 3
+@export var boxes: int = 0
 @export var keys: int = 0
 @export var potions: int = 0
-
 var used_box: bool = false
 var item_nearby: Area2D = null
 var item_type: String = ""
@@ -40,7 +39,9 @@ var heart_sprites: Array[AnimatedSprite2D] = []
 var active_hearts: int = 3  # Cuántos corazones están visibles (0–3)
 var damage_since_last_heart: int = 0
 @onready var box_count_label: Label = $Box_bar/BoxUI/BoxCount
-################################################################################
+@onready var key_count_label: Label = $Key_bar/KeyUI/KeyCount
+@onready var potion_count_label: Label = $Potion_bar/PotionUI/PotionCount
+###############################################################################
 # VARIABLES DE MOVIMIENTO
 ################################################################################
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -89,7 +90,18 @@ func _ready():
 	box_ui.anchor_bottom = 0
 	box_ui.offset_left = 80
 	box_ui.offset_top = 35
+
+	var potion_ui = $Potion_bar/PotionUI
+	potion_ui.offset_left = 70
+	potion_ui.offset_top = 610 # Abajo
+
+	var key_ui = $Key_bar/KeyUI
+	key_ui.offset_left = 1080
+	key_ui.offset_top = 615 # Abajo
+
 	update_box_ui()
+	update_key_ui()
+	update_potion_ui()
 
 ################################################################################
 # PROCESO PRINCIPAL (CADA FRAME)
@@ -195,6 +207,12 @@ func is_detectable() -> bool:
 func update_box_ui():
 	box_count_label.text = "x" + str(boxes)
 
+func update_key_ui():
+	key_count_label.text = "x" + str(keys)
+
+func update_potion_ui():
+	potion_count_label.text = "x" + str(potions)
+
 ################################################################################
 # SISTEMA DE ITEMS
 ################################################################################
@@ -208,6 +226,7 @@ func handle_item_pickup():
 	if door_nearby != null and keys > 0 and Input.is_action_just_pressed("use_key"):
 		if door_nearby.open():
 			keys -= 1
+			update_key_ui()
 			print("Llave usada en la puerta. Llaves restantes: ", keys)
 		return
 
@@ -225,21 +244,18 @@ func handle_item_pickup():
 			if area.is_in_group("boxes"):
 
 				DialogueManager.show_dialogue_balloon(box_dialogue, "start")
-
 				boxes += 1
 				update_box_ui()
 
 			elif area.is_in_group("keys"):
-
 				DialogueManager.show_dialogue_balloon(key_dialogue, "start")
-
 				keys += 1
+				update_key_ui()
 
 			elif area.is_in_group("potions"):
-
 				DialogueManager.show_dialogue_balloon(potion_dialogue, "start")
-
 				potions += 1
+				update_potion_ui()
 
 			elif area.is_in_group("bell"):
 
@@ -320,6 +336,8 @@ func heal() -> void:
 	if potions <= 0:
 		return
 	potions -= 1
+	update_potion_ui()
+	
 	life = min(life + 4, max_life)
 	# Mostrar de nuevo un corazón (frame 0, sin animación = "Heart")
 	if active_hearts < heart_sprites.size():

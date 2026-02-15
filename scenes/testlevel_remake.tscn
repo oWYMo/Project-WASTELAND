@@ -90,9 +90,8 @@ tile_set = SubResource("TileSet_637it")
 position = Vector2(254, 204)
 
 [node name="Event" parent="." unique_id=1919845461 instance=ExtResource("5_x3g3q")]
-position = Vector2(339, 30)
+position = Vector2(432, 23)
 dialogue_resource = ExtResource("6_48vlb")
-require_interaction = false
 
 [node name="player_remake" parent="." unique_id=1900050170 instance=ExtResource("2_au5do")]
 position = Vector2(272, 26)
